@@ -1,0 +1,11 @@
+# Excluir todos los archivos con extensión .test.ts
+**/*.test.ts
+
+# Excluir la carpeta "node_modules"
+node_modules/
+
+# Excluir todos los archivos de historias
+**/*.stories.ts
+
+**/*.graphql.hooks.ts
+**/*.graphql.types.ts
