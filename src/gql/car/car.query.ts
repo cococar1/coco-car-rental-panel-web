@@ -8,19 +8,19 @@ export const ALL_CAR = gql`
       image
       countPerson
       typeChange
-      typeChange
-      minTankQuantity
       minTankQuantity
       maxTankQuantity
       fullType
       subTitle
       description
-      availability
-      published
       price
       createdAt
       updatedAt
-      __typename
+      availability
+      published
+      brand
+      model
+      pickupTime
     }
   }
 `;

@@ -35,7 +35,6 @@ const FormCar: React.FC<FormCarProps> = ({
     <Modal
       onclickClose={(e) => {
         setStatus(!status);
-        console.log(e);
       }}
     >
       <ContainerFromPrincipal>
@@ -289,7 +288,8 @@ const FormCar: React.FC<FormCarProps> = ({
           ]}
           placeholder="Select"
           backgroundcolor="#ffffff"
-          onChange={(e) => {
+          value={car.typeChange ?? ""}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setCar({ ...car, typeChange: e.target.value });
           }}
         ></SelectInputUI>
@@ -315,7 +315,8 @@ const FormCar: React.FC<FormCarProps> = ({
             // fontSize: '16px',
             padding: "0px",
           }}
-          onChange={(e) => {
+          value={car.published ?? ""}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setCar({
               ...car,
               published: e.target.value == "true" ? true : false,
@@ -346,7 +347,8 @@ const FormCar: React.FC<FormCarProps> = ({
             { key: true, value: "Activo" },
             { key: false, value: "No activo" },
           ]}
-          onChange={(e) => {
+          value={car.availability ?? ""}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setCar({
               ...car,
               availability: e.target.value == "true" ? true : false,

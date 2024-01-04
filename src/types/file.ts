@@ -1,5 +1,4 @@
 export interface StateFile {
-    file: File;
-    url: string;
-    
-  }
+  file: File | null;
+  url: string | null;
+}

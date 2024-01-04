@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Switch } from "@nextui-org/react";
 
 import {
@@ -26,6 +26,9 @@ import { columns } from "./data";
 import { VerticalDotsIcon } from "../assets/svgs/verticalDotsIcon";
 import { Car } from "@/types/cars";
 import { useCarContext } from "@/contexts/CarContext";
+import { StateFile } from "@/types/file";
+import WrapperModal from "../WrapperModal";
+import FormCar from "../FromCar";
 
 const INITIAL_VISIBLE_COLUMNS = [
   "name",
@@ -48,6 +51,17 @@ export default function TableCars({
   const hasSearchFilter = Boolean(filterValue);
 
   const { deleteCar } = useCarContext();
+  const [status, setStatus] = useState(false);
+  const [file, setFile] = useState<StateFile>({} as StateFile);
+  const [car, setCar] = useState({} as Car);
+  const submitNewCar = () => {
+    // createCar(newCar, file.file, () => {
+    //   setStatus(false);
+    //   setNewCar({} as Car);
+    //   setFile({} as StateFile);
+    // });
+  };
+
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(
     new Set([])
   );
@@ -189,7 +203,7 @@ export default function TableCars({
                 onChange={(e) => {
                   e.preventDefault();
                   car.published = false;
-                  console.log(car);
+           
                   // car.status =
                   //   car.status.toLocaleLowerCase() == "publish"
                   //     ? "no publish"
@@ -207,14 +221,16 @@ export default function TableCars({
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
+              
                 <DropdownItem
                   onClick={(e) => {
-                    console.log(car._id);
+                    setCar(car as Car);
+                    setStatus(true);
+                    setFile({ url: car.image, file: null });
                   }}
                 >
-                  View
+                  Edit
                 </DropdownItem>
-                <DropdownItem>Edit</DropdownItem>
                 <DropdownItem
                   onClick={(e) => {
                     deleteCar(car._id, () => {});
@@ -264,52 +280,67 @@ export default function TableCars({
   }, [page, pages]);
 
   return (
-    <Table
-      aria-label="table"
-      isHeaderSticky
-      bottomContent={bottomContent}
-      bottomContentPlacement="outside"
-      onRowAction={(e) => {
-        console.log("object");
-      }}
-      onSelect={(e) => console.log(e)}
-      // bottomContentPlacement="outside"
-      classNames={{
-        wrapper: "max-h-[73vh]",
-      }}
-      selectedKeys={selectedKeys}
-      selectionMode="single"
-      sortDescriptor={sortDescriptor}
-      // topContentPlacement="outside"
-      onSelectionChange={setSelectedKeys}
-      // onSelectionChange={(e) => {
-      //   console.log(e);
+    <>
+      {status && (
+        <WrapperModal onclick={(e: any) => {}}>
+          <FormCar
+            status={status}
+            setStatus={setStatus}
+            car={car}
+            setCar={setCar}
+            file={file}
+            setFile={setFile}
+            submitCar={submitNewCar}
+          />
+        </WrapperModal>
+      )}
+      <Table
+        aria-label="table"
+        isHeaderSticky
+        bottomContent={bottomContent}
+        bottomContentPlacement="outside"
+        onRowAction={(e) => {
+          console.log("object");
+        }}
+        onSelect={(e) => console.log(e)}
+        // bottomContentPlacement="outside"
+        classNames={{
+          wrapper: "max-h-[73vh]",
+        }}
+        selectedKeys={selectedKeys}
+        selectionMode="single"
+        sortDescriptor={sortDescriptor}
+        // topContentPlacement="outside"
+        onSelectionChange={setSelectedKeys}
+        // onSelectionChange={(e) => {
+        //   console.log(e);
 
-      //   setSelectedKeys(e);
-      // }}
-      onSortChange={setSortDescriptor}
-    >
-      <TableHeader columns={headerColumns}>
-        {(column: any) => (
-          <TableColumn
-            key={column.uid}
-            align={column.uid === "actions" ? "center" : "start"}
-            onClick={(e) => console.log(column.uid)}
-            allowsSorting={column.sortable}
-          >
-            {column.name}
-          </TableColumn>
-        )}
-      </TableHeader>
-      <TableBody emptyContent={"No cars found"} items={sortedItems}>
-        {(item) => (
-          <TableRow key={item._id}>
-            {(columnKey) => (
-              <TableCell>{renderCell(item, columnKey)}</TableCell>
-            )}
-          </TableRow>
-        )}
-      </TableBody>
-    </Table>
+        //   setSelectedKeys(e);
+        // }}
+        onSortChange={setSortDescriptor}
+      >
+        <TableHeader columns={headerColumns}>
+          {(column: any) => (
+            <TableColumn
+              key={column.uid}
+              align={column.uid === "actions" ? "center" : "start"}
+              onClick={(e) => console.log(column.uid)}
+              allowsSorting={column.sortable}
+            >
+              {column.name}
+            </TableColumn>
+          )}
+        </TableHeader>
+        <TableBody emptyContent={"No cars found"} items={sortedItems}>
+          {(item) => (
+            <TableRow key={item._id}>
+              {(columnKey) => (
+                <TableCell>{renderCell(item, columnKey)}</TableCell>
+              )}
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </>
   );
 }
