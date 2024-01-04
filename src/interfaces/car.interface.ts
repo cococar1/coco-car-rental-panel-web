@@ -23,6 +23,7 @@ export interface CarHookType {
     file: File | null,
     onSuccess: (val: any) => void
   ) => void;
+  deleteCar: (id: any, onSuccess: (val: any) => void) => void;
   getCars: (options: any) => void;
   carsOptions: {
     data: Car[] | any;
@@ -31,6 +32,11 @@ export interface CarHookType {
   };
   createOptions: {
     data: Car[] | any;
+    loading: boolean;
+    error: any;
+  };
+  deleteOptions: {
+    data: boolean | any;
     loading: boolean;
     error: any;
   };

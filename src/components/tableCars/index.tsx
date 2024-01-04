@@ -9,7 +9,6 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Input,
   Button,
   DropdownTrigger,
   Dropdown,
@@ -19,19 +18,14 @@ import {
   User,
   Pagination,
   Selection,
-  ChipProps,
   SortDescriptor,
-  Tooltip,
 } from "@nextui-org/react";
 
-import { columns, statusOptions } from "./data";
+import { columns } from "./data";
 
-import { capitalize } from "@/utils";
 import { VerticalDotsIcon } from "../assets/svgs/verticalDotsIcon";
-import { PlusIcon } from "../assets/svgs/plusIcon";
-import { ChevronDownIcon } from "../assets/svgs/chevrowDownIcon";
-import { ToggleSwitch } from "../Switch";
 import { Car } from "@/types/cars";
+import { useCarContext } from "@/contexts/CarContext";
 
 const INITIAL_VISIBLE_COLUMNS = [
   "name",
@@ -53,6 +47,7 @@ export default function TableCars({
 }: TableCarsProps) {
   const hasSearchFilter = Boolean(filterValue);
 
+  const { deleteCar } = useCarContext();
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(
     new Set([])
   );
@@ -108,14 +103,13 @@ export default function TableCars({
 
   const renderCell = React.useCallback((car: Car, columnKey: React.Key) => {
     const cellValue = car[columnKey as keyof Car];
-    console.log(car.image);
     switch (columnKey) {
       case "name":
         return (
           <User
             avatarProps={{
               radius: "lg",
-              src: `${encodeURIComponent(`${car.image}`)}`,
+              src: `${car.image}`,
             }}
             description={car.subTitle}
             name={cellValue}
@@ -221,7 +215,13 @@ export default function TableCars({
                   View
                 </DropdownItem>
                 <DropdownItem>Edit</DropdownItem>
-                <DropdownItem>Delete</DropdownItem>
+                <DropdownItem
+                  onClick={(e) => {
+                    deleteCar(car._id, () => {});
+                  }}
+                >
+                  Delete
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>

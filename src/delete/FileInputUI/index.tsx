@@ -1,46 +1,31 @@
 // import Carousel from "@/components/Carousel";
 
-import React, { useState } from "react";
+import React from "react";
 import { ContainerInputFile, InputFile } from "./fileInput.style";
 
-import { gql, useMutation } from "@apollo/client";
+import { StateFile } from "@/types/file";
 
-export const TEST = gql`
-  mutation TEST($file: Upload) {
-    test(file: $file)
-  }
-`;
 interface FileInputUIProps {
   stylesInput?: React.CSSProperties;
   stylesContainer?: React.CSSProperties;
+  file: StateFile;
+  setFile: Function;
 }
 
-interface StateFile {
-  file: File;
-  url: string;
-}
-const FileInputUI: React.FC<FileInputUIProps> = ({ stylesContainer }) => {
-  const [file, setFile] = useState<StateFile>({} as StateFile);
-  const [createCarFn, createCarRes] = useMutation(TEST);
-
+const FileInputUI: React.FC<FileInputUIProps> = ({
+  stylesContainer,
+  file,
+  setFile,
+}) => {
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = e.target.files?.[0];
     if (fileList) {
       setFile({ file: fileList, url: URL.createObjectURL(fileList) });
     }
   };
-  const onSubtmit = async () => {
-    console.log("test submit");
-    console.log(file.file);
-    const result = await createCarFn({
-      variables: {
-        file: file.file,
-      },
-    });
-    console.log(result);
-  };
+
   return (
-    <ContainerInputFile style={{}}>
+    <ContainerInputFile style={stylesContainer ?? {}}>
       <div style={{ width: "100%" }}>
         {/* <Carousel></Carousel> */}
         {/* <CarouselCompoonet></CarouselCompoonet> */}
@@ -57,7 +42,6 @@ const FileInputUI: React.FC<FileInputUIProps> = ({ stylesContainer }) => {
         style={{ color: "transparent" }}
         onChange={onChangeFile}
       />
-      <button onClick={onSubtmit}>Submit</button>
     </ContainerInputFile>
   );
 };

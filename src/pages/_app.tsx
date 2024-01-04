@@ -3,14 +3,14 @@ import type { AppProps } from "next/app";
 import { Session } from "next-auth";
 
 import { Inter } from "@next/font/google";
-
+import { ToastContainer } from "react-toastify";
 import { ApolloProvider } from "@apollo/client";
 import "../styles/globals.styles.css";
+import "react-toastify/dist/ReactToastify.css";
 import FileInputUI from "@/delete/FileInputUI";
 import { Providers } from "@/contexts/Providers";
 import { useApollo } from "@/lib/apolloClient";
 import { GlobalStyle } from "@/styles/gobal.style";
-
 interface MyAppProps extends AppProps {
   session?: Session | null;
 }
@@ -36,6 +36,7 @@ export default function App({ Component, pageProps }: MyAppProps) {
         </style>
         {/* <RootLayout> */}
         <Component {...pageProps} />
+        <ToastContainer theme="colored" />
         {/* </RootLayout> */}
       </Providers>
 

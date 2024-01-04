@@ -21,25 +21,13 @@ const FileInputUI: React.FC<FileInputUIProps> = ({
   setFile,
   file,
 }) => {
-  // const [file, setFile] = useState<StateFile>({} as StateFile);
-  const [createCarFn, createCarRes] = useMutation(TEST);
-
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = e.target.files?.[0];
     if (fileList) {
       setFile({ file: fileList, url: URL.createObjectURL(fileList) });
     }
   };
-  const onSubtmit = async () => {
-    console.log("test submit");
-    console.log(file.file);
-    const result = await createCarFn({
-      variables: {
-        file: file.file,
-      },
-    });
-    console.log(result);
-  };
+
   return (
     <ContainerInputFile style={stylesContainer ? stylesContainer : {}}>
       <div style={{ width: "100%" }}>
@@ -58,7 +46,6 @@ const FileInputUI: React.FC<FileInputUIProps> = ({
         style={{ color: "transparent" }}
         onChange={onChangeFile}
       />
-      <button onClick={onSubtmit}>Submit</button>
     </ContainerInputFile>
   );
 };

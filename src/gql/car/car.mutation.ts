@@ -25,7 +25,13 @@ export const CREATE_CAR = gql`
 `;
 
 export const TEST = gql`
-  mutation TEST($file:Upload){
-  test(file:$file)
+  mutation TEST($file: Upload) {
+    test(file: $file)
   }
-`
+`;
+
+export const DELETE_CAR = gql`
+  mutation DELETE($id: ID!) {
+    removeCar(id: $id)
+  }
+`;

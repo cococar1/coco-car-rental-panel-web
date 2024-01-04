@@ -21,12 +21,13 @@ import TextAreaUI from "@/ui/TextAreaUI";
 import SelectInputUI from "@/ui/SelectInputUI";
 import { useCarContext } from "@/contexts/CarContext";
 import { StateFile } from "@/types/file";
+import FormCar from "@/components/FromCar";
 
 interface InvoiceListPageProps {}
 
 const InvoiceListPage: React.FC<InvoiceListPageProps> = () => {
   const [search, setSearch] = useState("");
-  const [status, seStatus] = useState(false);
+  const [status, setStatus] = useState(false);
   const [file, setFile] = useState<StateFile>({} as StateFile);
 
   const [newCar, setNewCar] = useState({} as Car);
@@ -35,13 +36,12 @@ const InvoiceListPage: React.FC<InvoiceListPageProps> = () => {
     carsOptions: { data: dataCars },
     createCar,
   } = useCarContext();
-  console.log("carpOptopmd", dataCars);
 
   const submitNewCar = () => {
-    console.log(file);
     createCar(newCar, file.file, () => {
-      seStatus(false);
+      setStatus(false);
       setNewCar({} as Car);
+      setFile({} as StateFile);
     });
   };
   return (
@@ -57,7 +57,7 @@ const InvoiceListPage: React.FC<InvoiceListPageProps> = () => {
               borderRadius: "10px",
             }}
             onClick={(e: any) => {
-              seStatus(!status);
+              setStatus(!status);
               // console.log(status)
             }}
           >
@@ -70,7 +70,16 @@ const InvoiceListPage: React.FC<InvoiceListPageProps> = () => {
                 // console.log(e)
               }}
             >
-              <Modal
+              <FormCar
+                status={status}
+                setStatus={setStatus}
+                car={newCar}
+                setCar={setNewCar}
+                file={file}
+                setFile={setFile}
+                submitCar={submitNewCar}
+              />
+              {/* <Modal
                 onclickClose={(e) => {
                   seStatus(!status);
                   console.log(e);
@@ -437,7 +446,7 @@ const InvoiceListPage: React.FC<InvoiceListPageProps> = () => {
                     Crear Auto
                   </ButtonPrincipalUI>
                 </ElementFrom>
-              </Modal>
+              </Modal> */}
             </WrapperModal>
           )}
           <div>
