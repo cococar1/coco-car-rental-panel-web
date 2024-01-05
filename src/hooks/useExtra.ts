@@ -19,7 +19,9 @@ export const useExtra = () => {
       },
       onCompleted(data) {
         if (data) {
-          toast.success("Extra creado correctamente");
+          toast.success("Extra creado correctamente", {
+            position: "bottom-right",
+          });
           onSuccess && onSuccess(data.createExtra);
         }
       },

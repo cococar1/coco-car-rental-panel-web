@@ -50,11 +50,16 @@ export default function TableCars({
 }: TableCarsProps) {
   const hasSearchFilter = Boolean(filterValue);
 
-  const { deleteCar } = useCarContext();
+  const { deleteCar, updateCar } = useCarContext();
   const [status, setStatus] = useState(false);
   const [file, setFile] = useState<StateFile>({} as StateFile);
   const [car, setCar] = useState({} as Car);
-  const submitNewCar = () => {
+  const submitCar = () => {
+    const { _id, __typename, updatedAt, createdAt, ...res } = car;
+    updateCar(_id, res, file.file ?? null, () => {
+      setStatus(false);
+    });
+
     // createCar(newCar, file.file, () => {
     //   setStatus(false);
     //   setNewCar({} as Car);
@@ -203,7 +208,7 @@ export default function TableCars({
                 onChange={(e) => {
                   e.preventDefault();
                   car.published = false;
-           
+
                   // car.status =
                   //   car.status.toLocaleLowerCase() == "publish"
                   //     ? "no publish"
@@ -221,7 +226,6 @@ export default function TableCars({
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
-              
                 <DropdownItem
                   onClick={(e) => {
                     setCar(car as Car);
@@ -290,7 +294,8 @@ export default function TableCars({
             setCar={setCar}
             file={file}
             setFile={setFile}
-            submitCar={submitNewCar}
+            submitCar={submitCar}
+            textButtonSubmit="Actualizar Auto"
           />
         </WrapperModal>
       )}

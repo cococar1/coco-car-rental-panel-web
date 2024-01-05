@@ -16,18 +16,19 @@ import { LoaderUI } from "@/components/LoaderUI";
 import { ToastContainer, toast } from "react-toastify";
 import { useRentalContext } from "@/contexts/RentalContext";
 import { useCarContext } from "@/contexts/CarContext";
+import { signOut, useSession } from "next-auth/react";
 interface PromotionAdditionalPageProps {}
 
 const PromotionAdditionalPage: React.FC<PromotionAdditionalPageProps> = () => {
   const [statusModal, setStatusModal] = useState(false);
   const [newExtra, setNewExtra] = useState({} as Extra);
+  const { data: session, status: statusNexth } = useSession();
 
   const [search, setSearch] = useState("");
   const {
     extrasOptions: { data: dataExtras, loading },
     createExtra,
   } = useExtraContext();
-  console.log(dataExtras);
 
   const submitNewExtra = (e: any) => {
     createExtra(newExtra, () => {
@@ -39,6 +40,27 @@ const PromotionAdditionalPage: React.FC<PromotionAdditionalPageProps> = () => {
     if (search != "") {
     }
   }, [search]);
+
+  if (statusNexth === "unauthenticated") {
+    signOut({ redirect: true, callbackUrl: "/login" });
+  }
+
+  if (statusNexth == "loading") {
+    return (
+      <main>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            height: "100vh",
+            alignItems: "center",
+          }}
+        >
+          <LoaderUI></LoaderUI>
+        </div>
+      </main>
+    );
+  }
   return (
     <main style={{ position: "relative" }}>
       <DashboardLayout changeSearch={setSearch} valueSearch={search}>
@@ -128,6 +150,7 @@ const PromotionAdditionalPage: React.FC<PromotionAdditionalPageProps> = () => {
                     { value: "PROMOTION", key: "PROMOTION" },
                     { value: "ADDITIONAL", key: "ADDITIONAL" },
                   ]}
+                  value={newExtra.type ?? ""}
                   onChange={({
                     target,
                   }: React.ChangeEvent<HTMLSelectElement>) =>

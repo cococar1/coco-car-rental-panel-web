@@ -8,12 +8,12 @@ import { ResponseUser } from "@/interfaces/user.interface";
 
 export interface Authentication {
   logout: () => void;
-  changePassword: (
-    password: string,
-    newPassword: string,
-    onSuccess?: MutationCompleteType<ResponseUser>
-  ) => void;
-  changePasswordRes: MutationResult<Record<"changePassword", ResponseUser>>;
+  // changePassword: (
+  //   password: string,
+  //   newPassword: string,
+  //   onSuccess?: MutationCompleteType<ResponseUser>
+  // ) => void;
+  // changePasswordRes: MutationResult<Record<"changePassword", ResponseUser>>;
   userLogin: (email: string, password: string, redirectTo?: string) => void;
   getAuthData: () => void;
   userRegister: (data: CreateUserInput, redirectTo?: string) => void;

@@ -1,78 +1,73 @@
-import { getSession } from 'next-auth/react'
-import { withAuth } from 'next-auth/middleware'
-import { NextRequest, NextResponse } from 'next/server'
+import { getSession } from "next-auth/react";
+import { withAuth } from "next-auth/middleware";
+import { NextRequest, NextResponse } from "next/server";
 
-import { initializeApollo } from './lib/apolloClient'
-import { GET_USER_TOKEN } from './gql/queries/userToken.query'
+import { initializeApollo } from "./lib/apolloClient";
+import { LOGGED_USER } from "./gql/auth/auth.query";
 
-export async function middleware (req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const requestForNextAuth = {
     headers: {
-      cookie: req.headers.get('cookie') ?? undefined
-    }
-  }
-  const session = await getSession({ req: requestForNextAuth })
-  const token = await req.cookies.get('access_token')?.value
-  const apolloClient = initializeApollo()
-  const url = req.nextUrl.clone()
-  const redirectedParam = req.url.includes('?redirected=true')
+      cookie: req.headers.get("cookie") ?? undefined,
+    },
+  };
+  const session = await getSession({ req: requestForNextAuth });
+  const token = await req.cookies.get("access_token")?.value;
+  const apolloClient = initializeApollo();
+  const url = req.nextUrl.clone();
+  const redirectedParam = req.url.includes("?redirected=true");
 
-  if (req.nextUrl.pathname.startsWith('/app')) {
+  if (req.nextUrl.pathname.startsWith("/app")) {
     if (!session || !token) {
-      url.pathname = '/'
-      return NextResponse.redirect(url)
+      url.pathname = "/";
+      return NextResponse.redirect(url);
     }
   }
-
-  if (req.nextUrl.pathname.startsWith('/empieza')) {
-    if (session) {
-      const accessToken = session?.user?.accessToken
-      const response = NextResponse.next()
-      response.cookies.set('access_token', accessToken)
-
-      return response
-    }
-  }
-
-  if (req.nextUrl.pathname.startsWith('/') && !redirectedParam) {
-    const accessToken = session?.user?.accessToken
+  //TODO: Corregir estaba con estar/ pero algo no me cuadra
+  if (req.nextUrl.pathname == "/" && !redirectedParam) {
+    const accessToken = session?.user?.accessToken;
 
     if (accessToken) {
       try {
+        console.log("session 32", session);
         const {
-          data: { dataWithToken }
+          data: { dataWithToken },
         } = await apolloClient.query({
-          query: GET_USER_TOKEN,
+          query: LOGGED_USER,
           context: {
             headers: {
-              Authorization: `Bearer ${accessToken}`
-            }
-          }
-        })
-        if (dataWithToken?.regiterCompleted) {
-          const url = req.nextUrl.clone()
-          url.pathname = '/app'
-          url.searchParams.set('redirected', 'true')
-          const response = NextResponse.redirect(url)
-          response.cookies.set('access_token', accessToken)
-          return response
+              Authorization: `Bearer ${accessToken}`,
+            },
+          },
+        });
+        if (dataWithToken) {
+          const url = req.nextUrl.clone();
+          url.pathname = "/";
+          url.searchParams.set("redirected", "true");
+          const response = NextResponse.redirect(url);
+          response.cookies.set("access_token", accessToken);
+          return response;
         } else {
-          const url = req.nextUrl.clone()
-          url.pathname = '/empieza'
+          const url = req.nextUrl.clone();
+          url.pathname = "/login";
 
-          return NextResponse.redirect(url)
+          return NextResponse.redirect(url);
         }
       } catch (error) {
-        console.log(error, 'error with get user')
+        console.log(error, "error with get user");
       }
+    } else {
+      const url = req.nextUrl.clone();
+      url.pathname = "/login";
+      return NextResponse.redirect(url);
     }
   }
 
-  return NextResponse.next()
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/', '/app', '/empieza']
-}
+  matcher: ["/"],
+};
 
-export default withAuth({})
+export default withAuth({});

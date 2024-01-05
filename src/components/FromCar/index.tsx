@@ -20,6 +20,7 @@ interface FormCarProps {
   car: Car;
   setCar: Function;
   submitCar: Function;
+  textButtonSubmit: string;
 }
 
 const FormCar: React.FC<FormCarProps> = ({
@@ -30,6 +31,7 @@ const FormCar: React.FC<FormCarProps> = ({
   car,
   setCar,
   submitCar,
+  textButtonSubmit,
 }) => {
   return (
     <Modal
@@ -386,7 +388,7 @@ const FormCar: React.FC<FormCarProps> = ({
           sx={{ width: "100%", background: "#e96f45" }}
           onClick={submitCar}
         >
-          Crear Auto
+          {textButtonSubmit}
         </ButtonPrincipalUI>
       </ElementFrom>
     </Modal>

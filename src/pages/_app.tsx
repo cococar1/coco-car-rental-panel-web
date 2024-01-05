@@ -11,6 +11,7 @@ import FileInputUI from "@/delete/FileInputUI";
 import { Providers } from "@/contexts/Providers";
 import { useApollo } from "@/lib/apolloClient";
 import { GlobalStyle } from "@/styles/gobal.style";
+import { SessionProvider } from "next-auth/react";
 interface MyAppProps extends AppProps {
   session?: Session | null;
 }
@@ -23,24 +24,23 @@ export default function App({ Component, pageProps }: MyAppProps) {
   const client = useApollo(pageProps.initialApolloState);
   return (
     <ApolloProvider client={client}>
-      {/* <SessionProvider session={session}> */}
-      <Providers>
-        <GlobalStyle />
+      <SessionProvider >
+        <Providers>  
+          <GlobalStyle />
 
-        <style jsx global>
-          {`
-            html {
-              font-family: ${InterFont.style.fontFamily};
-            }
-          `}
-        </style>
-        {/* <RootLayout> */}
-        <Component {...pageProps} />
-        <ToastContainer theme="colored" />
-        {/* </RootLayout> */}
-      </Providers>
-
-      {/* </SessionProvider> */}
+          <style jsx global>
+            {`
+              html {
+                font-family: ${InterFont.style.fontFamily};
+              }
+            `}
+          </style>
+          {/* <RootLayout> */}
+          <Component {...pageProps} />
+          <ToastContainer theme="colored" />
+          {/* </RootLayout> */}
+        </Providers>
+      </SessionProvider>
     </ApolloProvider>
   );
 }

@@ -2,21 +2,19 @@
 
 import { PlusIcon } from "@/components/assets/svgs/plusIcon";
 import TableCars from "@/components/tableCars";
-import TableUsers from "@/components/tableUser";
 import DashboardLayout from "@/layouts/Dashboard.layout";
 import { Car } from "@/types/cars";
 import { ButtonPrincipalUI } from "@/ui/ButtonPrincipalUi";
 import { useEffect, useState } from "react";
 import { ContainerCardsPage } from "./cards.style";
 import WrapperModal from "@/components/WrapperModal";
-import Modal from "@/components/Modal";
-import FileInputUI from "@/ui/FileInputUI";
-import InpuntUI from "@/ui/InputUI";
-import TextAreaUI from "@/ui/TextAreaUI";
-import SelectInputUI from "@/ui/SelectInputUI";
+
 import { useCarContext } from "@/contexts/CarContext";
 import { StateFile } from "@/types/file";
 import FormCar from "@/components/FromCar";
+import { signOut, useSession } from "next-auth/react";
+import { LoaderUI } from "@/components/LoaderUI";
+import nextAuth from "next-auth";
 
 interface InvoiceListPageProps {}
 
@@ -26,6 +24,7 @@ const InvoiceListPage: React.FC<InvoiceListPageProps> = () => {
   const [file, setFile] = useState<StateFile>({} as StateFile);
 
   const [newCar, setNewCar] = useState({} as Car);
+  const { data: session, status: statusNexth } = useSession();
 
   const {
     carsOptions: { data: dataCars },
@@ -39,6 +38,31 @@ const InvoiceListPage: React.FC<InvoiceListPageProps> = () => {
       setFile({} as StateFile);
     });
   };
+  useEffect(() => {
+    const validateRoute = async () => {
+      if (statusNexth === "unauthenticated") {
+        await signOut({ redirect: true, callbackUrl: "/login" });
+      }
+    };
+    validateRoute();
+  }, [statusNexth]);
+
+  if (statusNexth == "loading") {
+    return (
+      <main>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            height: "100vh",
+            alignItems: "center",
+          }}
+        >
+          <LoaderUI></LoaderUI>
+        </div>
+      </main>
+    );
+  }
   return (
     <main style={{ position: "relative" }}>
       <DashboardLayout changeSearch={setSearch} valueSearch={search}>
@@ -73,6 +97,7 @@ const InvoiceListPage: React.FC<InvoiceListPageProps> = () => {
                 file={file}
                 setFile={setFile}
                 submitCar={submitNewCar}
+                textButtonSubmit="Crear Auto"
               />
             </WrapperModal>
           )}

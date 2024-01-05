@@ -9,78 +9,85 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { MutationCompleteType } from "@/interfaces/base.interface";
 import { ResponseUser, TokenResponse, User } from "@/interfaces/user.interface";
+import { signIn, signOut } from "next-auth/react";
 
 export type UserResponse = TokenResponse & {
   user: Omit<User, "password">;
 };
 
-export type CreateUserInput = Omit<
-  User,
-  "_id"  | "role" | "username"
->;
+export type CreateUserInput = Omit<User, "_id" | "role" | "username">;
 
 export const useAuth = () => {
   const router = useRouter();
   const [token, setToken] = useState("");
   const [authLoginFn, authLoginRes] = useLazyQuery(AUTH_LOGIN);
-  const [changePasswordFn, changePasswordRes] =
-    useMutation<Record<"changePassword", ResponseUser>>(CHANGE_PASSWORD);
+  // const [changePasswordFn, changePasswordRes] =
+  //   useMutation<Record<"changePassword", ResponseUser>>(CHANGE_PASSWORD);
   const [createUserFn, createUserRes] = useMutation(CREATE_USER);
   const [getLoggedUserFn, getLoggedUserRes] = useLazyQuery(LOGGED_USER);
 
   const getAuthData = () => {
-    getLoggedUserFn({
-      
-    });
+    getLoggedUserFn({});
   };
 
-  const changePassword = (
+  // const changePassword = (
+  //   password: string,
+  //   newPassword: string,
+  //   onSuccess?: MutationCompleteType<ResponseUser>
+  // ) => {
+  //   changePasswordFn({
+  //     variables: {
+  //       password,
+  //       newPassword,
+  //     },
+  //     onCompleted(data) {
+  //       if (data) {
+  //         toast.success("Contraseña cambiada!");
+  //         onSuccess && onSuccess(data.changePassword);
+  //       }
+  //     },
+  //     onError(error) {
+  //       const isNotAuthorized =
+  //         error.message.includes("Unauthorized") &&
+  //         "Contraseña actual incorrecta";
+  //       toast.error(
+  //         isNotAuthorized || error.message || "Error al cambiar contraseña"
+  //       );
+  //     },
+  //   });
+  // };
+
+  const userLogin = async (
+    email: string,
     password: string,
-    newPassword: string,
-    onSuccess?: MutationCompleteType<ResponseUser>
+    redirectTo?: string
   ) => {
-    changePasswordFn({
-      variables: {
-        password,
-        newPassword,
-      },
-      onCompleted(data) {
-        if (data) {
-          toast.success("Contraseña cambiada!");
-          onSuccess && onSuccess(data.changePassword);
-        }
-      },
-      onError(error) {
-        const isNotAuthorized =
-          error.message.includes("Unauthorized") &&
-          "Contraseña actual incorrecta";
-        toast.error(
-          isNotAuthorized || error.message || "Error al cambiar contraseña"
-        );
-      },
+    const responseNextAuth = await signIn("credentials", {
+      email,
+      password,
+      redirect: true,
+      callbackUrl: "/",
     });
-  };
+    console.log("use login 70", responseNextAuth);
+    // authLoginFn({
+    //   variables: {
+    //     email,
+    //     password,
+    //   },
+    //   onCompleted(data) {
+    //     if (data) {
+    //       const { accessToken, refreshToken, user } =
+    //         data.authLogin as UserResponse;
 
-  const userLogin = (email: string, password: string, redirectTo?: string) => {
-    authLoginFn({
-      variables: {
-        email,
-        password,
-      },
-      onCompleted(data) {
-        if (data) {
-          const { accessToken, refreshToken, user } =
-            data.authLogin as UserResponse;
-
-          if (accessToken) {
-            setAuth(accessToken, refreshToken, user.role, redirectTo);
-          }
-        }
-      },
-      onError() {
-        toast.error("Error al iniciar sesión");
-      },
-    });
+    //       if (accessToken) {
+    //         setAuth(accessToken, refreshToken, user.role, redirectTo);
+    //       }
+    //     }
+    //   },
+    //   onError() {
+    //     toast.error("Error al iniciar sesión");
+    //   },
+    // });
   };
 
   const userRegister = (data: CreateUserInput, redirectTo?: string) => {
@@ -104,13 +111,11 @@ export const useAuth = () => {
     });
   };
 
-  const logout = () => {
+  const logout = async () => {
     removeCookie("access_token");
     removeCookie("refresh_token");
     getLoggedUserFn();
-    setTimeout(() => {
-      window.location.href = "/";
-    }, 20);
+    await signOut({ redirect: true, callbackUrl: "/login" });
   };
 
   const setAuth = (
@@ -127,9 +132,7 @@ export const useAuth = () => {
 
     setTimeout(() => {
       if (redirectTo) return router.push(redirectTo);
-      // if (role === "ADMIN") return router.push("/administrador");
-      // if (role === "STUDENT") return router.push("/");
-      // if (role === "TEACHER") return router.push("/profesor");
+
       return router.push("/");
     }, 10);
   };
@@ -151,8 +154,8 @@ export const useAuth = () => {
   return {
     logout,
     token,
-    changePassword,
-    changePasswordRes,
+    // changePassword,
+    // changePasswordRes,
     loggedUser: getLoggedUserRes.data?.loggedUser,
     loadingUser: getLoggedUserRes.loading,
     userLogin,

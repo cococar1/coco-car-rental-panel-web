@@ -35,3 +35,27 @@ export const DELETE_CAR = gql`
     removeCar(id: $id)
   }
 `;
+
+export const UPDATE_CAR = gql`
+  mutation UPDATE_CAR($id: ID!, $data: UpdateCarInput!, $file: Upload) {
+    updateCar(id: $id, updateCarInput: $data, file: $file) {
+      name
+      image
+      countPerson
+      typeChange
+      minTankQuantity
+      maxTankQuantity
+      fullType
+      subTitle
+      description
+      price
+      createdAt
+      updatedAt
+      availability
+      published
+      brand
+      model
+      pickupTime
+    }
+  }
+`;
