@@ -31,7 +31,7 @@ const FaQPage: React.FC<FaQPageProps> = () => {
         </div>
 
 
-        {loading && dataExtras == undefined && (
+        {/* {loading && dataExtras == undefined && (
           <div
             style={{
               width: "100%",
@@ -43,7 +43,7 @@ const FaQPage: React.FC<FaQPageProps> = () => {
           >
             <LoaderUI></LoaderUI>
           </div>
-        )}
+        )} */}
       </DashboardLayout>
     </main>
   );
