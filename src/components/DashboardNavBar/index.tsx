@@ -84,6 +84,14 @@ export const DashboardNavBar: any = ({
               <p>Promociones</p>
             </Link>
           </NavItem>
+          <NavItem isactive={(mainRoute == "faq") as boolean}>
+            <Link href="/faq">
+              <EmailIcon
+                color={mainRoute == "/faq" ? "#E96F45" : "#000000"}
+              />
+              <p>Preguntas</p>
+            </Link>
+          </NavItem>
 
           <NavItem isactive={(mainRoute == "config") as boolean}>
             <Link href="/config">

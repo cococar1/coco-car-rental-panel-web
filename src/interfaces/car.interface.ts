@@ -1,21 +1,5 @@
-export interface Car {
-  _id: string;
-  name: string; //
-  image: null; //
-  countPerson: number; //
-  typeChange: string; //
-  minTankQuantity: number; //
-  maxTankQuantity: number; //
-  fullType: string; //
-  subTitle: string; //
-  description: string; //
-  precio: number; //
-  availability: boolean;
-  published: boolean; //
-  createdAt: number;
-  updatedAt: number;
-  __typename: string;
-}
+import { Car } from "@/types/cars";
+
 
 export interface CarHookType {
   createCar: (

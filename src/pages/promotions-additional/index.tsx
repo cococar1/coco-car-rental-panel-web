@@ -219,7 +219,7 @@ const PromotionAdditionalPage: React.FC<PromotionAdditionalPageProps> = () => {
             </Modal>
           </WrapperModal>
         )}
-        <ToastContainer position="bottom-right" />
+        {/* <ToastContainer position="bottom-right" /> */}
       </DashboardLayout>
     </main>
   );

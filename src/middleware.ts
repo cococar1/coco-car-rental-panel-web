@@ -23,7 +23,7 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(url);
     }
   }
-  //TODO: Corregir estaba con estar/ pero algo no me cuadra
+  //TODO: Corregir estaba con estar/ pero algo no me cuadr
   if (req.nextUrl.pathname == "/" && !redirectedParam) {
     const accessToken = session?.user?.accessToken;
 

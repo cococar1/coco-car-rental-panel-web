@@ -1,10 +1,4 @@
-export interface Extra {
-  _id: string;
-  title: string;
-  description: string;
-  createdAt: string;
-  type: string;
-}
+import { Extra } from "@/types/Extras.type";
 
 export interface ExtraHookType {
   createExtra: (data: any, onSuccess: (val: any) => void) => void;
