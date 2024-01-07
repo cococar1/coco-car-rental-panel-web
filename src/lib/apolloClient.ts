@@ -18,11 +18,11 @@ import {
   split
 } from '@apollo/client'
 import { GraphQLError } from 'graphql'
-import { REFRESH_TOKEN } from '@/gql/queries/userToken.query'
 
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
 import { createClient } from 'graphql-ws'
 import { getMainDefinition } from '@apollo/client/utilities'
+import { REFRESH_TOKEN } from '@/gql/auth/auth.query'
 
 let apolloClient: any
 

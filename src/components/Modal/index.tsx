@@ -1,8 +1,6 @@
 import { MouseEventHandler, ReactNode } from "react";
 import CloseIcon from "../assets/svgs/closeIcon";
-import { Address } from "../../interfaces/user.interface";
 import {
-  ContainerBottom,
   ContainerContent,
   ContainerHeaderOptions,
   ModalNewCar,

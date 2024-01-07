@@ -1,5 +1,5 @@
 import { getSession } from "next-auth/react";
-import { withAuth } from "next-auth/middleware";
+// import { withAuth } from "next-auth/middleware";
 import { NextRequest, NextResponse } from "next/server";
 
 import { initializeApollo } from "./lib/apolloClient";
@@ -11,7 +11,7 @@ export async function middleware(req: NextRequest) {
       cookie: req.headers.get("cookie") ?? undefined,
     },
   };
-  const session = await getSession({ req: requestForNextAuth });
+  const session = await getSession({ req: requestForNextAuth }) as any;
   const token = await req.cookies.get("access_token")?.value;
   const apolloClient = initializeApollo();
   const url = req.nextUrl.clone();
@@ -70,4 +70,4 @@ export const config = {
   matcher: ["/"],
 };
 
-export default withAuth({});
+// export default withAuth({});

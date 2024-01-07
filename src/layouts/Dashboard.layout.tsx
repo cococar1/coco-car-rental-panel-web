@@ -1,6 +1,5 @@
 "use client";
 import { DashboardNavBar } from "@/components/DashboardNavBar";
-import { ApolloWrapper } from "@/lib/apollo-wrapper";
 import { ContainerLayout } from "./Dashboard.style";
 import { NavBar } from "@/components/NavBar";
 // import "./globals.css";

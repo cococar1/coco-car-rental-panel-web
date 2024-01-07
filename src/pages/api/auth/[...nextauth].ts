@@ -2,6 +2,7 @@ import { AUTH_LOGIN } from "@/gql/auth/auth.query";
 import { initializeApollo } from "@/lib/apolloClient";
 import { ApolloClient } from "@apollo/client";
 import NextAuth, { NextAuthOptions } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: NextAuthOptions = {
@@ -63,7 +64,7 @@ export const authOptions: NextAuthOptions = {
     async redirect({ url, baseUrl }) {
       return url.startsWith(baseUrl) ? url : baseUrl;
     },
-    async session({ session, token }) {
+    async session({ session, token }: { session: any; token: JWT }) {
       console.log("next auth 62 api", session);
       session.token = token.id_token as string;
       session.user = token.graphqlData;

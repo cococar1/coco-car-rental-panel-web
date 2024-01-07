@@ -1,5 +1,4 @@
 // import Carousel from "@/components/Carousel";
-import CarouselCompoonet from "@/components/Carousel";
 import React, { useState } from "react";
 import { ContainerInputFile, InputFile } from "./fileInput.style";
 import { TEST } from "@/gql/car/car.mutation";

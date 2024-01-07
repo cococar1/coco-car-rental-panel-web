@@ -5,7 +5,8 @@ import { useMutation, useLazyQuery } from "@apollo/client";
 import { toast } from "react-toastify";
 import { CREATE_CAR, DELETE_CAR, UPDATE_CAR } from "@/gql/car/car.mutation";
 import { ALL_CAR } from "@/gql/car/car.query";
-import { Car, CarHookType } from "@/interfaces/car.interface";
+import {  CarHookType } from "@/interfaces/car.interface";
+import { Car } from "@/types/cars";
 
 export const useCar = (): CarHookType => {
   const [createCarFn, createCarRes] = useMutation(CREATE_CAR);

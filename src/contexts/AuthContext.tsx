@@ -1,10 +1,8 @@
 "use client";
 import { createContext, useContext } from "react";
-import { ApolloError, MutationResult } from "@apollo/client";
+import { ApolloError } from "@apollo/client";
 
 import { CreateUserInput, UserResponse, useAuth } from "@/hooks/useAuth";
-import { MutationCompleteType } from "@/interfaces/base.interface";
-import { ResponseUser } from "@/interfaces/user.interface";
 
 export interface Authentication {
   logout: () => void;

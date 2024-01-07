@@ -31,7 +31,7 @@ const SelectInputUI: React.FC<SelectInputUiProps> = ({
       <select
         aria-placeholder={placeholder}
         aria-label={placeholder}
-        onChange={onChange}
+        onChange={onChange as any}
         style={styleSelect ?? {}}
         value={value}
       >
@@ -40,7 +40,7 @@ const SelectInputUI: React.FC<SelectInputUiProps> = ({
         </option>
         {arrayOptions.map((e, index) => {
           return (
-            <option key={index} value={e.key}>
+            <option key={index} value={e.key as any}>
               {e.value}
             </option>
           );

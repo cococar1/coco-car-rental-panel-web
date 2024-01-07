@@ -3,12 +3,11 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { getCookie, removeCookie, setCookie } from "@/helpers/cookie";
 import { AUTH_LOGIN, LOGGED_USER } from "@/gql/auth/auth.query";
-import { CHANGE_PASSWORD, CREATE_USER } from "../gql/auth/auth.mutation";
+import { CREATE_USER } from "../gql/auth/auth.mutation";
 import { useLazyQuery, useMutation } from "@apollo/client";
 
 import { useEffect, useState } from "react";
-import { MutationCompleteType } from "@/interfaces/base.interface";
-import { ResponseUser, TokenResponse, User } from "@/interfaces/user.interface";
+import { TokenResponse, User } from "@/interfaces/user.interface";
 import { signIn, signOut } from "next-auth/react";
 
 export type UserResponse = TokenResponse & {
