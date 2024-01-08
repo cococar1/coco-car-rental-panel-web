@@ -7,15 +7,12 @@
   },
   "extends": [
     "plugin:react/recommended",
-    "standard",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/stylistic-type-checked",
     "plugin:@typescript-eslint/stylistic",
     "plugin:prettier/recommended",
-    "next/core-web-vitals",
-    "plugin:testing-library/react",
-    "plugin:jest-dom/recommended"
+    "next/core-web-vitals"
   ],
   "settings": {
     "react": { "version": "detect" }

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { ContainerLoginModal, ContainerLoginPage } from "./login.style";
+import { ContainerLoginModal, ContainerLoginPage } from "../../styles/login.style";
 import InpuntUI from "@/ui/InputUI";
 import { ButtonPrincipalUI } from "@/ui/ButtonPrincipalUi";
 import { useAuthContext } from "@/contexts/AuthContext";

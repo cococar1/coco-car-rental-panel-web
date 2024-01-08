@@ -6,7 +6,7 @@ import DashboardLayout from "@/layouts/Dashboard.layout";
 import { Car } from "@/types/cars";
 import { ButtonPrincipalUI } from "@/ui/ButtonPrincipalUi";
 import { useEffect, useState } from "react";
-import { ContainerCardsPage } from "./cards.style";
+import { ContainerCardsPage } from "../../styles/cards.style";
 import WrapperModal from "@/components/WrapperModal";
 
 import { useCarContext } from "@/contexts/CarContext";

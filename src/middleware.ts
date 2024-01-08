@@ -1,5 +1,5 @@
 import { getSession } from "next-auth/react";
-// import { withAuth } from "next-auth/middleware";
+import { withAuth } from "next-auth/middleware";
 import { NextRequest, NextResponse } from "next/server";
 
 import { initializeApollo } from "./lib/apolloClient";
@@ -11,7 +11,7 @@ export async function middleware(req: NextRequest) {
       cookie: req.headers.get("cookie") ?? undefined,
     },
   };
-  const session = await getSession({ req: requestForNextAuth }) as any;
+  const session = (await getSession({ req: requestForNextAuth })) as any;
   const token = await req.cookies.get("access_token")?.value;
   const apolloClient = initializeApollo();
   const url = req.nextUrl.clone();
@@ -23,7 +23,7 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(url);
     }
   }
-  //TODO: Corregir estaba con estar/ pero algo no me cuadr
+  // TODO: Corregir estaba con estar/ pero algo no me cuadr
   if (req.nextUrl.pathname == "/" && !redirectedParam) {
     const accessToken = session?.user?.accessToken;
 
@@ -68,6 +68,10 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: ["/"],
+  runtime: "nodejs", // rather than "edge"
+  unstable_allowDynamic: [
+    "/node_modules/@babel/runtime/regenerator/index.js", // file causing the build error
+  ],
 };
 
-// export default withAuth({});
+export default withAuth({});

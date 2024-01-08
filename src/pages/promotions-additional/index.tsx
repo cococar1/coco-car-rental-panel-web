@@ -2,7 +2,7 @@
 import { PlusIcon } from "@/components/assets/svgs/plusIcon";
 import DashboardLayout from "@/layouts/Dashboard.layout";
 import { ButtonPrincipalUI } from "@/ui/ButtonPrincipalUi";
-import { ContentPage } from "./promotions-additional.style";
+import { ContentPage } from "../../styles/promotions-additional.style";
 import WrapperPromotions from "@/components/Promotions";
 import { Extra } from "@/types/Extras.type";
 import WrapperModal from "@/components/WrapperModal";
