@@ -48,7 +48,7 @@ export const authOptions: NextAuthOptions = {
 
     // ...add more providers here
   ],
-  secret: "ThisIsMyScretToken",
+  secret: process.env.NEXT_AUTH_SECRET,
   callbacks: {
     async jwt({ token, user, account }) {
       console.log("next auth api 50", token);
