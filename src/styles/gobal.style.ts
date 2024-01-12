@@ -14,4 +14,15 @@ export const GlobalStyle = createGlobalStyle`
   overflow-y: hidden;
   
 }
+
+
+.rti--container {
+  --rti-bg: "#fff",
+  --rti-border: "#ccc",
+  --rti-main: "#3182ce",
+  --rti-radius: "0.375rem",
+  --rti-s: "0.5rem", /* spacing */
+  --rti-tag: "#edf2f7",
+  --rti-tag-remove: "#e53e3e",
+}
 `;

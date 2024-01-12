@@ -50,12 +50,13 @@ export default function TableCars({
 }: TableCarsProps) {
   const hasSearchFilter = Boolean(filterValue);
 
-  const { deleteCar, updateCar } = useCarContext();
+  const { deleteCar, updateCar, getCars } = useCarContext();
   const [status, setStatus] = useState(false);
   const [file, setFile] = useState<StateFile>({} as StateFile);
   const [car, setCar] = useState({} as Car);
   const submitCar = () => {
-    const { _id, __typename, updatedAt, createdAt, ...res } = car;
+    const { _id, __typename, updatedAt, createdAt, image, ...res } = car;
+    console.log(res);
     updateCar(_id, res, file.file ?? null, () => {
       setStatus(false);
     });
@@ -207,12 +208,28 @@ export default function TableCars({
                 key={car._id}
                 onChange={(e) => {
                   e.preventDefault();
-                  car.published = false;
 
-                  // car.status =
-                  //   car.status.toLocaleLowerCase() == "publish"
-                  //     ? "no publish"
-                  //     : "publish";
+                  const {
+                    _id,
+                    __typename,
+                    updatedAt,
+                    createdAt,
+                    image,
+                    published,
+                    ...res
+                  } = car;
+                  console.log(res);
+                  updateCar(
+                    _id,
+                    {
+                      ...res,
+                      published: !car.published,
+                    },
+                    file.file ?? null,
+                    () => {
+                      getCars(() => {});
+                    }
+                  );
                 }}
                 defaultSelected={car.published}
                 isSelected={car.published}

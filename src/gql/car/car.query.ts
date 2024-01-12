@@ -21,6 +21,8 @@ export const ALL_CAR = gql`
       brand
       model
       pickupTime
+      licensePlate
+      features
     }
   }
 `;

@@ -20,6 +20,8 @@ export const CREATE_CAR = gql`
       brand
       model
       pickupTime
+      licensePlate
+      features
     }
   }
 `;
@@ -56,6 +58,8 @@ export const UPDATE_CAR = gql`
       brand
       model
       pickupTime
+      licensePlate
+      features
     }
   }
 `;

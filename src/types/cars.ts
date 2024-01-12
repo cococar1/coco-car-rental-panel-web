@@ -17,5 +17,7 @@ export interface Car {
   model: string;
   pickupTime: string;
   updatedAt: number;
+  features: string[];
+  licensePlate: string;
   __typename: string;
 }

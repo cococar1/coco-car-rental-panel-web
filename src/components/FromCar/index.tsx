@@ -11,6 +11,7 @@ import { Car } from "@/types/cars";
 import TextAreaUI from "@/ui/TextAreaUI";
 import SelectInputUI from "@/ui/SelectInputUI";
 import { ButtonPrincipalUI } from "@/ui/ButtonPrincipalUi";
+import { TagsInput } from "react-tag-input-component";
 
 interface FormCarProps {
   status: boolean;
@@ -69,6 +70,25 @@ const FormCar: React.FC<FormCarProps> = ({
               placeholder="Name"
               placeholdercolor="#9ea3a8f8"
               valueInput={car.name ?? ""}
+            />
+          </ElementFromPrincipal>
+          <ElementFromPrincipal>
+            <label form="name">Matricula:</label>
+            <InpuntUI
+              changeValue={(licensePlate: string) =>
+                setCar({ ...car, licensePlate })
+              }
+              backgroundcolor="#FFFFFF"
+              stylesContainer={{
+                height: "40px",
+                width: "80%",
+              }}
+              stylesInput={{ width: "100%", height: "25px" }}
+              type="text"
+              idInput="name"
+              placeholder="Name"
+              placeholdercolor="#9ea3a8f8"
+              valueInput={car.licensePlate ?? ""}
             />
           </ElementFromPrincipal>
           <ElementFromPrincipal>
@@ -154,6 +174,18 @@ const FormCar: React.FC<FormCarProps> = ({
           value={car.description ?? ""}
         ></TextAreaUI>
       </ElementFrom>
+      <ElementFrom>
+        <h2>Caracteristicas</h2>
+        <TagsInput
+          value={car.features}
+          onChange={(e) => {
+            console.log(e);
+            setCar({ ...car, features: e });
+          }}
+          name="features"
+          placeHolder="enter caracteristicas"
+        />
+      </ElementFrom>
       <ElementFrom
         style={{
           display: "flex",
@@ -210,25 +242,7 @@ const FormCar: React.FC<FormCarProps> = ({
         }}
       >
         <h2>Litros del baul</h2>
-        <h2>Minimo</h2>
-        <InpuntUI
-          backgroundcolor="#ffffff"
-          stylesContainer={{ width: "80px" }}
-          stylesInput={{
-            width: "100%",
-            height: "20px",
-          }}
-          placeholdercolor="#9ea3a8f8"
-          placeholder="0"
-          type="Number"
-          changeValue={(minTankQuantity: number) =>
-            setCar({
-              ...car,
-              minTankQuantity: Number(minTankQuantity),
-            })
-          }
-          valueInput={car.minTankQuantity?.toString()}
-        />{" "}
+
         <h2>Maximo</h2>
         <InpuntUI
           backgroundcolor="#ffffff"
@@ -308,8 +322,8 @@ const FormCar: React.FC<FormCarProps> = ({
         <SelectInputUI
           width="40%"
           arrayOptions={[
-            { key: true, value: "publicado" },
-            { key: false, value: "no publicado" },
+            { key: true, value: "Activo" },
+            { key: false, value: "No activo" },
           ]}
           placeholder="Select"
           styleSelect={{
@@ -327,37 +341,6 @@ const FormCar: React.FC<FormCarProps> = ({
           backgroundcolor="#ffffff"
         ></SelectInputUI>
       </ElementFrom>{" "}
-      <ElementFrom
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "10px 0px",
-        }}
-      >
-        <h2>Disponibilidad</h2>
-        <SelectInputUI
-          width="40%"
-          placeholder="Select"
-          backgroundcolor="#ffffff"
-          styleSelect={{
-            height: "20px",
-            // fontSize: '16px',
-            padding: "0px",
-          }}
-          arrayOptions={[
-            { key: true, value: "Activo" },
-            { key: false, value: "No activo" },
-          ]}
-          value={car.availability ?? ""}
-          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-            setCar({
-              ...car,
-              availability: e.target.value == "true" ? true : false,
-            });
-          }}
-        ></SelectInputUI>
-      </ElementFrom>
       <ElementFrom
         style={{
           display: "flex",
