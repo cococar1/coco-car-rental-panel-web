@@ -8,7 +8,8 @@ import {
 import { CarsProvider } from "@/contexts/CarContext";
 import { ExtraProvider } from "@/contexts/ExtraContext";
 import { ThemeProvider } from "styled-components";
-import { NextUIProvider } from '@nextui-org/react';
+import { NextUIProvider } from "@nextui-org/react";
+import { BookingProvider } from "./BookingContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -16,7 +17,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <ThemeProvider theme={{}}>
         <AuthProvider>
           <ExtraProvider>
-            <CarsProvider>{children}</CarsProvider>
+            <CarsProvider>
+              <BookingProvider>{children}</BookingProvider>
+            </CarsProvider>
           </ExtraProvider>
         </AuthProvider>
       </ThemeProvider>

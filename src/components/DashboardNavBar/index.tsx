@@ -56,10 +56,10 @@ export const DashboardNavBar: any = ({
             </Link>
           </NavItem>
 
-          <NavItem isactive={(mainRoute == "wallet") as boolean}>
-            <Link href="/wallet">
+          <NavItem isactive={(mainRoute == "booking") as boolean}>
+            <Link href="/booking">
               <DocumentIcon
-                color={mainRoute == "/wallet" ? "#E96F45" : "#000000"}
+                color={mainRoute == "/booking" ? "#E96F45" : "#000000"}
               />
               <p>Reservas</p>
             </Link>
