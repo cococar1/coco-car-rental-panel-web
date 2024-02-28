@@ -106,7 +106,7 @@ export const useCar = (): CarHookType => {
     deleteCar,
     updateCar,
     carsOptions: {
-      data: getCarRes.data?.cars,
+      data: getCarRes.data?.carsAdmin,
       loading: getCarRes.loading,
       error: getCarRes.error,
     },

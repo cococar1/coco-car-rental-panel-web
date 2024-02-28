@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const ALL_CAR = gql`
   query ALL_CAR {
-    cars {
+    carsAdmin {
       _id
       name
       image

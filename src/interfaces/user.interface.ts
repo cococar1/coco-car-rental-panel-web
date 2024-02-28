@@ -1,4 +1,3 @@
-import { SelectOption } from "@/interfaces/base.interface";
 
 export interface User {
   _id:      string;
