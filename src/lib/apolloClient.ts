@@ -156,7 +156,7 @@ const createApolloClient = (
   )
 
   const headers = {
-    Autorization: `Bearer ${
+    Authorization: `Bearer ${
       req ? getCookie('access_token', req) : getCookie('access_token')
     }`
   }
