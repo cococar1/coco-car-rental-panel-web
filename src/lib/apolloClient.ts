@@ -24,7 +24,7 @@ import { createClient } from 'graphql-ws'
 import { getMainDefinition } from '@apollo/client/utilities'
 import { REFRESH_TOKEN } from '@/gql/auth/auth.query'
 
-let apolloClient: any
+let apolloClient: any 
 
 const URL_API_HTTP = `${
   process.env.NEXT_PUBLIC_API_URL ?? process.env.API_URL
