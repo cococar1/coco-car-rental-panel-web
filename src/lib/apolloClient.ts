@@ -76,7 +76,7 @@ const createApolloClient = (
 
       if (token) {
         extraHeader = {
-          Autorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`
         }
       }
       return {

@@ -1,4 +1,5 @@
 import { AUTH_LOGIN } from "@/gql/auth/auth.query";
+import { setCookie } from "@/helpers/cookie";
 import { initializeApollo } from "@/lib/apolloClient";
 import { ApolloClient } from "@apollo/client";
 import NextAuth, { NextAuthOptions } from "next-auth";
@@ -30,6 +31,8 @@ export const authOptions: NextAuthOptions = {
           const { user } = authLogin || {};
 
           if (user) {
+            setCookie("access_token", authLogin.accessToken);
+            setCookie("refresh_token", authLogin.refreshToken);
             return {
               _id: user._id,
               fullName: user.fullName,
