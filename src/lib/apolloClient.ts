@@ -30,9 +30,9 @@ const URL_API_HTTP = `${
   process.env.NEXT_PUBLIC_API_URL ?? process.env.API_URL
 }/graphql`
 
-const URL_API_WS = `${
-  process.env.NEXT_PUBLIC_API_URL_WS ?? process.env.API_URL_WS
-}/graphql`
+// const URL_API_WS = `${
+//   process.env.NEXT_PUBLIC_API_URL_WS ?? process.env.API_URL_WS
+// }/graphql`
 
 function isRefreshRequest (operation: GraphQLRequest) {
   return operation.operationName === 'refresh_token'
@@ -129,31 +129,31 @@ const createApolloClient = (
     }
   )
 
-  const combinedLink = ApolloLink.from([
-    errorLink,
-    authLink,
-    uploadLink as ApolloLink | RequestHandler
-  ])
+  // const combinedLink = ApolloLink.from([
+  //   errorLink,
+  //   authLink,
+  //   uploadLink as ApolloLink | RequestHandler
+  // ])
 
-  const splitLink = split(
-    ({ query }) => {
-      const definition = getMainDefinition(query)
-      return (
-        definition.kind === 'OperationDefinition' &&
-        definition.operation === 'subscription'
-      )
-    },
-    new GraphQLWsLink(
-      createClient({
-        url: URL_API_WS,
-        connectionParams: {
-          authorization: `Bearer ${getCookie('access_token')}`
-        }
-      })
-    ),
+  // const splitLink = split(
+  //   ({ query }) => {
+  //     const definition = getMainDefinition(query)
+  //     return (
+  //       definition.kind === 'OperationDefinition' &&
+  //       definition.operation === 'subscription'
+  //     )
+  //   },
+  //   new GraphQLWsLink(
+  //     createClient({
+  //       url: URL_API_WS,
+  //       connectionParams: {
+  //         authorization: `Bearer ${getCookie('access_token')}`
+  //       }
+  //     })
+  //   ),
 
-    combinedLink
-  )
+  //   combinedLink
+  // )
 
   const headers = {
     Authorization: `Bearer ${
@@ -164,7 +164,7 @@ const createApolloClient = (
   const client = new ApolloClient({
     uri: URL_API_HTTP,
     ssrMode: typeof window === 'undefined',
-    link: splitLink,
+    // link: splitLink,
     headers,
     cache: new InMemoryCache(),
     connectToDevTools: true
