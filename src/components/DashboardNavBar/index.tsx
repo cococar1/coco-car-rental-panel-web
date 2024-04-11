@@ -14,6 +14,7 @@ import ConfigIcon from "../assets/svgs/configIcon";
 import EmailIcon from "../assets/svgs/emailIcon";
 import TicketIcon from "../assets/svgs/ticketIcon";
 import CloseSessionIcon from "../assets/svgs/closeSessionIcon";
+import { useAuthContext } from "@/contexts/AuthContext";
 export const DashboardNavBar: any = ({
   user,
   role,
@@ -23,6 +24,7 @@ export const DashboardNavBar: any = ({
 }) => {
   const router = usePathname();
   const mainRoute = router.split("/")[1];
+  const { logout } = useAuthContext();
   return (
     <NavbarContainer
       style={{
@@ -68,7 +70,7 @@ export const DashboardNavBar: any = ({
           <NavItem isactive={(mainRoute == "messages") as boolean}>
             <Link href="/messages">
               <EmailIcon
-                color={mainRoute == "/messages" ? "#E96F45" : "#000000"}
+                color={mainRoute == "messages" ? "#E96F45" : "#000000"}
               />
               <p>Mensajes</p>
             </Link>
@@ -86,9 +88,7 @@ export const DashboardNavBar: any = ({
           </NavItem>
           <NavItem isactive={(mainRoute == "faq") as boolean}>
             <Link href="/faq">
-              <EmailIcon
-                color={mainRoute == "/faq" ? "#E96F45" : "#000000"}
-              />
+              <EmailIcon color={mainRoute == "/faq" ? "#E96F45" : "#000000"} />
               <p>Preguntas</p>
             </Link>
           </NavItem>
@@ -103,7 +103,7 @@ export const DashboardNavBar: any = ({
           </NavItem>
           <NavItem
             style={{
-              height: "40vh",
+              height: "50vh",
               width: "150px",
               display: "flex",
               alignItems: "end",
@@ -111,7 +111,7 @@ export const DashboardNavBar: any = ({
             }}
             isactive={false}
           >
-            <Link href="/" style={{ width: "100px" }}>
+            <Link href="/" style={{ width: "100px" }} onClick={logout}>
               <CloseSessionIcon
                 color={mainRoute == "/config" ? "#E96F45" : "#000000"}
               />

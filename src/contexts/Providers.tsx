@@ -10,6 +10,7 @@ import { ExtraProvider } from "@/contexts/ExtraContext";
 import { ThemeProvider } from "styled-components";
 import { NextUIProvider } from "@nextui-org/react";
 import { BookingProvider } from "./BookingContext";
+import { ContactProvider } from "./ContactContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -18,7 +19,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <AuthProvider>
           <ExtraProvider>
             <CarsProvider>
-              <BookingProvider>{children}</BookingProvider>
+              <BookingProvider>
+                <ContactProvider>{children}</ContactProvider>
+              </BookingProvider>
             </CarsProvider>
           </ExtraProvider>
         </AuthProvider>
