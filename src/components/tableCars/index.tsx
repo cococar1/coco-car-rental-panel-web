@@ -56,7 +56,7 @@ export default function TableCars({
   const [car, setCar] = useState({} as Car);
   const submitCar = () => {
     const { _id, __typename, updatedAt, createdAt, image, ...res } = car;
-    console.log(res);
+ 
     updateCar(_id, res, file.file ?? null, () => {
       setStatus(false);
     });
@@ -218,7 +218,7 @@ export default function TableCars({
                     published,
                     ...res
                   } = car;
-                  console.log(res);
+                  
                   updateCar(
                     _id,
                     {
