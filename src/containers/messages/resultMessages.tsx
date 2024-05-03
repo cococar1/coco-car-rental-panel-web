@@ -1,4 +1,4 @@
-import InpuntUI from "@/ui/InputUI";
+import InputUI from "@/ui/InputUI";
 import {
   ContainerAllMessage,
   ContainerResultMessages,
@@ -51,7 +51,7 @@ const ResultMessages: React.FC<ResultMessagesProps> = () => {
         <h2>Mensajes</h2>
       </div>
       <ItemContainer style={{ marginTop: "20px", marginBottom: "10px" }}>
-        <InpuntUI
+        <InputUI
           SvgIcon={<SearchIcon color="#A098AE"></SearchIcon>}
           type="text"
           backgroundcolor="#ffffff"
@@ -71,7 +71,7 @@ const ResultMessages: React.FC<ResultMessagesProps> = () => {
             width: "100% ",
           }}
           placeholdercolor="#B4B4B4"
-        ></InpuntUI>
+        ></InputUI>
       </ItemContainer>
       {/* <ItemContainer style={{ justifyContent: "space-between",marginTop:"10px" }}>
         <span style={{fontSize:"25px"}} >Chat</span>

@@ -6,6 +6,7 @@ export const ALL_BOOKING = gql`
       _id
       pickupDate
       returnDate
+      pickupLocation
       price
       client {
         fullName

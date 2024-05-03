@@ -5,7 +5,7 @@ import { NavItem, NavbarContainer } from "./navBar.style";
 import { ButtonPrincipalContainer } from "@/ui/ButtonPrincipalUi/buttonPrincipal.style";
 import { useScrollPosition } from "@/hooks/useScrollPosition";
 import Search from "../Search";
-import InpuntUI from "@/ui/InputUI";
+import InputUI from "@/ui/InputUI";
 import SearchIcon from "../assets/svgs/searchIcon";
 import EmailIcon from "../assets/svgs/emailIcon";
 import BellIcon from "../assets/svgs/bellIcon";
@@ -27,7 +27,7 @@ export const NavBar: any = ({
     <NavbarContainer scrollPosition={scrollPosition}>
       <nav style={{ height: "80px" }}>
         <div style={{ width: "50%" }}>
-          <InpuntUI
+          <InputUI
             SvgIcon={<SearchIcon color="#AEB7C1"></SearchIcon>}
             type="text"
             backgroundcolor="#ffffff"
@@ -46,7 +46,7 @@ export const NavBar: any = ({
               width: "100% ",
             }}
             placeholdercolor="#B4B4B4"
-          ></InpuntUI>
+          ></InputUI>
         </div>
         <ul>
           <NavItem>

@@ -1,7 +1,7 @@
 export interface Booking {
   _id: string;
-  pickupDate: number;
-  returnDate: number;
+  pickupDate: number | Date | string;
+  returnDate: number | Date | string;
   price: number;
   client: Client | any;
   car: Car | any;
@@ -10,6 +10,7 @@ export interface Booking {
   image: string;
   paymentId: null | string;
   paymentLink: string | null;
+  pickupLocation: string | null;
   __typename: string;
 }
 

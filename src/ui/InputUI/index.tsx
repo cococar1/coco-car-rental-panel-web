@@ -20,7 +20,7 @@ interface InpuntUIProps {
   valueInput?: string;
 }
 
-const InpuntUI: React.FC<InpuntUIProps> = ({
+const InputUI: React.FC<InpuntUIProps> = ({
   type,
   SvgIcon,
   placeholder,
@@ -71,4 +71,4 @@ const InpuntUI: React.FC<InpuntUIProps> = ({
   );
 };
 
-export default InpuntUI;
+export default InputUI;

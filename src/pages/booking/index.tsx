@@ -16,6 +16,8 @@ import nextAuth from "next-auth";
 import TableBookings from "@/components/tableBookings";
 import { Booking } from "@/types/booking";
 import { useBooking } from "@/hooks/usBooking";
+import Modal from "@/components/Modal";
+import ModalNewBooking from "@/components/ModalNewBooking";
 
 interface BookingsListPageProps {}
 
@@ -29,7 +31,6 @@ const BookingPage: React.FC<BookingsListPageProps> = () => {
 
   const {
     bookingsOptions: { data: dataCars },
-    
   } = useBooking();
 
   const submitNewCar = () => {};
@@ -77,6 +78,13 @@ const BookingPage: React.FC<BookingsListPageProps> = () => {
           >
             Crear nueva reserva
           </ButtonPrincipalUI>
+
+          <WrapperModal
+            onclick={() => {}}
+            styleWrapper={{ justifyContent: "center", alignItems: "center" }}
+          >
+            <ModalNewBooking onClose={()=>{}}></ModalNewBooking>
+          </WrapperModal>
 
           <div>
             <TableBookings data={dataCars ?? []} valueFilterSearch={search} />

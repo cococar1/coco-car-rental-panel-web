@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { ContainerLoginModal, ContainerLoginPage } from "../../styles/login.style";
-import InpuntUI from "@/ui/InputUI";
+import InputUI from "@/ui/InputUI";
 import { ButtonPrincipalUI } from "@/ui/ButtonPrincipalUi";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { useState } from "react";
@@ -49,7 +49,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
             incidunt expedita ut, non quam totam perspiciatis tempora repellat
             aperiam quis possimus commodi
           </p>
-          <InpuntUI
+          <InputUI
             type="email"
             placeholder="Ingresa tu correo electrónico"
             backgroundcolor="#ffffff"
@@ -58,7 +58,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
             valueInput={loginData.email}
             changeValue={onChangeEmail}
           />
-          <InpuntUI
+          <InputUI
             type="password"
             placeholder="Contraseña"
             backgroundcolor="#ffffff"

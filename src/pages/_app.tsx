@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import { ApolloProvider } from "@apollo/client";
 import "../styles/globals.styles.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-phone-input-2/lib/style.css";
 import FileInputUI from "@/delete/FileInputUI";
 import { Providers } from "@/contexts/Providers";
 import { useApollo } from "@/lib/apolloClient";

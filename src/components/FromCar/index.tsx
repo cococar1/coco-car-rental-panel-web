@@ -6,7 +6,7 @@ import {
   ElementFromPrincipal,
 } from "./fromCar.style";
 import { StateFile } from "@/types/file";
-import InpuntUI from "@/ui/InputUI";
+import InputUI from "@/ui/InputUI";
 import { Car } from "@/types/cars";
 import TextAreaUI from "@/ui/TextAreaUI";
 import SelectInputUI from "@/ui/SelectInputUI";
@@ -57,7 +57,7 @@ const FormCar: React.FC<FormCarProps> = ({
         >
           <ElementFromPrincipal>
             <label form="name">Nombre:</label>
-            <InpuntUI
+            <InputUI
               changeValue={(name: string) => setCar({ ...car, name })}
               backgroundcolor="#FFFFFF"
               stylesContainer={{
@@ -74,7 +74,7 @@ const FormCar: React.FC<FormCarProps> = ({
           </ElementFromPrincipal>
           <ElementFromPrincipal>
             <label form="name">Matricula:</label>
-            <InpuntUI
+            <InputUI
               changeValue={(licensePlate: string) =>
                 setCar({ ...car, licensePlate })
               }
@@ -93,7 +93,7 @@ const FormCar: React.FC<FormCarProps> = ({
           </ElementFromPrincipal>
           <ElementFromPrincipal>
             <label form="subTitle">Sub titulo:</label>
-            <InpuntUI
+            <InputUI
               backgroundcolor="#FFFFFF"
               stylesContainer={{ height: "40px", width: "80%" }}
               stylesInput={{ width: "100%", height: "25px" }}
@@ -107,7 +107,7 @@ const FormCar: React.FC<FormCarProps> = ({
           </ElementFromPrincipal>
           <ElementFromPrincipal>
             <label form="price">Precio Por dia:</label>
-            <InpuntUI
+            <InputUI
               backgroundcolor="#FFFFFF"
               stylesContainer={{ height: "40px", width: "80%" }}
               stylesInput={{ width: "100%", height: "25px" }}
@@ -132,7 +132,7 @@ const FormCar: React.FC<FormCarProps> = ({
         }}
       >
         <h2>Marca</h2>
-        <InpuntUI
+        <InputUI
           backgroundcolor="#FFFFFF"
           stylesContainer={{ height: "40px", width: "40%" }}
           stylesInput={{ width: "100%", height: "25px" }}
@@ -153,7 +153,7 @@ const FormCar: React.FC<FormCarProps> = ({
         }}
       >
         <h2>Modelo</h2>
-        <InpuntUI
+        <InputUI
           backgroundcolor="#FFFFFF"
           stylesContainer={{ height: "40px", width: "40%" }}
           stylesInput={{ width: "100%", height: "25px" }}
@@ -195,7 +195,7 @@ const FormCar: React.FC<FormCarProps> = ({
         }}
       >
         <h2>Capacidad maxima de personas</h2>
-        <InpuntUI
+        <InputUI
           backgroundcolor="#ffffff"
           stylesContainer={{ width: "90px" }}
           stylesInput={{
@@ -219,7 +219,7 @@ const FormCar: React.FC<FormCarProps> = ({
         }}
       >
         <h2>Combustible</h2>
-        <InpuntUI
+        <InputUI
           backgroundcolor="#ffffff"
           stylesContainer={{ width: "40%" }}
           stylesInput={{
@@ -244,7 +244,7 @@ const FormCar: React.FC<FormCarProps> = ({
         <h2>Litros del baul</h2>
 
         <h2>Maximo</h2>
-        <InpuntUI
+        <InputUI
           backgroundcolor="#ffffff"
           stylesContainer={{ width: "80px" }}
           stylesInput={{
@@ -350,7 +350,7 @@ const FormCar: React.FC<FormCarProps> = ({
         }}
       >
         <h2>Horario</h2>
-        <InpuntUI
+        <InputUI
           backgroundcolor="#ffffff"
           stylesContainer={{ width: "40%" }}
           stylesInput={{

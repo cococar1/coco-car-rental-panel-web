@@ -26,6 +26,7 @@ const ModalViewBooking: React.FC<ModalViewBookingProps> = ({
         height: "500px",
         display: "flex",
         flexDirection: "column",
+        width: "50%",
         borderRadius: "10px",
         justifyContent: "space-between",
       }}
@@ -114,16 +115,39 @@ const ModalViewBooking: React.FC<ModalViewBookingProps> = ({
             </Item>
             <Item>
               <span>Status:</span>
-              <p>Pendient</p>
+              <p>{data.status}</p>
             </Item>
-            <ButtonPrincipalUI
-              sx={{ padding: "5px 5px", width: "200px", background: "#E96F45" }}
-            >
-              link pago
-            </ButtonPrincipalUI>
+            <Item>
+              <span>Recojo:</span>
+              <p>{data.pickupLocation ?? "No definido"}</p>
+            </Item>
           </div>
         </div>
       </SectionAuto>
+      <div
+        style={{ marginTop: "10px", display: "flex", justifyContent: "center" }}
+      >
+        {data.paymentLink ? (
+          <a
+            style={{
+              padding: "5px 5px",
+              width: "200px",
+              background: "#E96F45",
+              borderRadius: "10px",
+              textAlign: "center",
+              color: "#fff",
+            }}
+            target="_blank"
+            href={data.paymentLink ?? "#"}
+          >
+            Link pago
+          </a>
+        ) : (
+          <div>
+            <p style={{ color: "#E1E1E1" }}>No cuenta con link de pago</p>
+          </div>
+        )}
+      </div>
     </Modal>
   );
 };

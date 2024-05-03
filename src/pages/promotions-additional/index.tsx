@@ -7,7 +7,7 @@ import WrapperPromotions from "@/components/Promotions";
 import { Extra } from "@/types/Extras.type";
 import WrapperModal from "@/components/WrapperModal";
 import Modal from "@/components/Modal";
-import InpuntUI from "@/ui/InputUI";
+import InputUI from "@/ui/InputUI";
 import TextAreaUI from "@/ui/TextAreaUI";
 import SelectInputUI from "@/ui/SelectInputUI";
 import { useEffect, useState } from "react";
@@ -127,7 +127,7 @@ const PromotionAdditionalPage: React.FC<PromotionAdditionalPageProps> = () => {
             >
               <div>
                 <label form="title">Titulo</label>
-                <InpuntUI
+                <InputUI
                   placeholder="Ingrese el titulo"
                   stylesInput={{ width: "100%", height: "27px" }}
                   stylesContainer={{ width: "100%", marginTop: "15px" }}
@@ -138,7 +138,7 @@ const PromotionAdditionalPage: React.FC<PromotionAdditionalPageProps> = () => {
                     setNewExtra({ ...newExtra, title })
                   }
                   valueInput={newExtra.title}
-                ></InpuntUI>
+                ></InputUI>
               </div>
               <div style={{ marginTop: "20px" }}>
                 <label htmlFor="type">Tipo</label>
