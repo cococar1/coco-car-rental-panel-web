@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { Switch } from "@nextui-org/react";
 
 import {
@@ -118,7 +118,7 @@ export default function TableBookings({
     return filteredItems.slice(start, end);
   }, [page, filteredItems, rowsPerPage]);
 
-  const sortedItems = React.useMemo(() => {
+  const sortedItems: Booking[] = React.useMemo(() => {
     return [...items].sort((a: Booking, b: Booking) => {
       const first = a[sortDescriptor.column as keyof Booking] as number;
       const second = b[sortDescriptor.column as keyof Booking] as number;
@@ -379,7 +379,7 @@ export default function TableBookings({
                 return (
                   //   <div></div>
 
-                  <TableCell>{renderCell(item, columnKey)}</TableCell>
+                  <TableCell>{renderCell(item, columnKey)  as ReactNode}</TableCell>
                 );
               }}
             </TableRow>

@@ -19,7 +19,7 @@ export interface Car {
   model: string;
   brand: string;
   image: string | null;
-  price?: number;
+  price: number;
 }
 
 export interface Client {
