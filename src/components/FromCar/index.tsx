@@ -12,6 +12,7 @@ import TextAreaUI from "@/ui/TextAreaUI";
 import SelectInputUI from "@/ui/SelectInputUI";
 import { ButtonPrincipalUI } from "@/ui/ButtonPrincipalUi";
 import { TagsInput } from "react-tag-input-component";
+import { EventChange } from "@/types/general";
 
 interface FormCarProps {
   status: boolean;
@@ -20,7 +21,7 @@ interface FormCarProps {
   setFile: Function;
   car: Car;
   setCar: Function;
-  submitCar: Function;
+  submitCar: React.MouseEventHandler<HTMLButtonElement>;
   textButtonSubmit: string;
 }
 

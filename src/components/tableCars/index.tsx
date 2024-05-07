@@ -54,9 +54,9 @@ export default function TableCars({
   const [status, setStatus] = useState(false);
   const [file, setFile] = useState<StateFile>({} as StateFile);
   const [car, setCar] = useState({} as Car);
-  const submitCar = () => {
+  const submitCar: React.MouseEventHandler<HTMLButtonElement> = () => {
     const { _id, __typename, updatedAt, createdAt, image, ...res } = car;
- 
+
     updateCar(_id, res, file.file ?? null, () => {
       setStatus(false);
     });
@@ -218,7 +218,7 @@ export default function TableCars({
                     published,
                     ...res
                   } = car;
-                  
+
                   updateCar(
                     _id,
                     {
