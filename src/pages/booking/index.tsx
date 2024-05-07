@@ -15,7 +15,7 @@ import { LoaderUI } from "@/components/LoaderUI";
 import nextAuth from "next-auth";
 import TableBookings from "@/components/tableBookings";
 import { Booking } from "@/types/booking";
-import { useBooking } from "@/hooks/usBooking";
+import { useBooking } from "@/hooks/useBooking";
 import Modal from "@/components/Modal";
 import ModalNewBooking from "@/components/ModalNewBooking";
 
@@ -23,7 +23,7 @@ interface BookingsListPageProps {}
 
 const BookingPage: React.FC<BookingsListPageProps> = () => {
   const [search, setSearch] = useState("");
-  const [status, setStatus] = useState(false);
+  const [statusModal, setStatusModal] = useState(false);
   const [file, setFile] = useState<StateFile>({} as StateFile);
 
   const [newBooking, setNewBooking] = useState({} as Booking);
@@ -72,20 +72,26 @@ const BookingPage: React.FC<BookingsListPageProps> = () => {
               borderRadius: "10px",
             }}
             onClick={(e: any) => {
-              setStatus(!status);
+              setStatusModal(!statusModal);
               // console.log(status)
             }}
           >
             Crear nueva reserva
           </ButtonPrincipalUI>
-
-          <WrapperModal
-            onclick={() => {}}
-            styleWrapper={{ justifyContent: "center", alignItems: "center" }}
-          >
-            <ModalNewBooking onClose={()=>{}}></ModalNewBooking>
-          </WrapperModal>
-
+          {statusModal && (
+            <WrapperModal
+              onclick={() => {
+                setStatusModal(!statusModal);
+              }}
+              styleWrapper={{ justifyContent: "center", alignItems: "center" }}
+            >
+              <ModalNewBooking
+                onClose={() => {
+                  setStatusModal(!statusModal);
+                }}
+              ></ModalNewBooking>
+            </WrapperModal>
+          )}
           <div>
             <TableBookings data={dataCars ?? []} valueFilterSearch={search} />
           </div>

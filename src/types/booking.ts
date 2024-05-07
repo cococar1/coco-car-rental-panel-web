@@ -3,8 +3,8 @@ export interface Booking {
   pickupDate: number | Date | string;
   returnDate: number | Date | string;
   price: number;
-  client: Client | any;
-  car: Car | any;
+  client: Client;
+  car: Car;
   status: Status;
   paymentMethod: string;
   image: string;
@@ -19,6 +19,7 @@ export interface Car {
   model: string;
   brand: string;
   image: string | null;
+  price?: number;
 }
 
 export interface Client {

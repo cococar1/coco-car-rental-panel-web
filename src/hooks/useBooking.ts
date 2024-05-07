@@ -3,12 +3,14 @@
 import { useEffect } from "react";
 import { useMutation, useLazyQuery } from "@apollo/client";
 import { toast } from "react-toastify";
-import { CREATE_BOOKING_MANUAL} from "@/gql/booking/booking.mutation";
+import { CREATE_BOOKING_MANUAL } from "@/gql/booking/booking.mutation";
 import { ALL_BOOKING } from "@/gql/booking/booking.query";
 import { BookingHookType } from "@/interfaces/booking.interface";
 
 export const useBooking = (): BookingHookType => {
-  const [createBookingFn, createBookingRes] = useMutation(CREATE_BOOKING_MANUAL);
+  const [createBookingFn, createBookingRes] = useMutation(
+    CREATE_BOOKING_MANUAL
+  );
   // const [updateBookingFn, updateBookingRes] = useMutation(UPDATE_BOOKING_MANUAL);
   // const [deleteBookingFn, deleteBookingRes] = useMutation(DELETE_BOOKING_MANUAL);
 
@@ -31,16 +33,18 @@ export const useBooking = (): BookingHookType => {
         if (data) {
           toast.success("Reserva creada correctamente", {
             position: "bottom-right",
+            style: { zIndex: 500000 },
           });
           onSuccess && onSuccess(data.createBooking);
         }
       },
       onError(error) {
         console.error(error);
-        toast.error(error.message || "Error al crear reserva");
+        toast.error("Error al crear reserva, verifique todos los campos");
       },
     });
   };
+
   // const updateBooking = (
   //   id: string,
   //   data: Booking,

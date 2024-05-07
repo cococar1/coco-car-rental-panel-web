@@ -1,3 +1,4 @@
+import moment from "moment";
 import { parseZonedDateTime } from "@internationalized/date";
 import Modal from "../Modal";
 import { Container, FormHomeContainerColumn } from "./style";
@@ -9,26 +10,48 @@ import {
   getDateFromFinalDate,
   getTimeFromFinalDate,
 } from "@/helpers/dateTime.helper";
-import { Booking } from "@/types/booking";
+import { Booking, Gender, Status } from "@/types/booking";
 import CalendarIcon from "../assets/svgs/calendarIcon";
 import ClockIcon from "../assets/svgs/clockIcon";
 import PhoneInput from "react-phone-input-2";
 import SelectInputUI from "@/ui/SelectInputUI";
+import { EventChange } from "@/types/general";
+import { ButtonPrincipalUI } from "@/ui/ButtonPrincipalUi";
+import { useBookingContext } from "@/contexts/BookingContext";
+import { toast } from "react-toastify";
 
 interface ModalNewBookingProps {
   onClose: any;
 }
-type ValuePiece = Date | null;
 
-type Value = ValuePiece | [ValuePiece, ValuePiece];
 const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
-  const [value, onChange] = useState<Value>([new Date(), new Date()]);
-
-  const [newManualBooking, setNewManualBooking] = useState({
+  const { createBooking } = useBookingContext();
+  const [newManualBooking, setNewManualBooking] = useState<Booking>({
     pickupDate: "T",
     returnDate: "T",
+    status: Status.CONFIRMED,
   } as Booking);
 
+  const handleSubmit = async () => {
+    const pickupDate = moment(newManualBooking.pickupDate);
+    const returnDate = moment(newManualBooking.returnDate);
+
+    if (pickupDate.isValid() && returnDate.isValid()) {
+      if (returnDate < pickupDate) {
+        toast.error("La fecha de retorno es posterior a la fecha de recogida.");
+      }
+    } else {
+      toast.error("Las fechas proporcionadas son inválidas.");
+    }
+
+    createBooking(newManualBooking, null, () => {
+      setNewManualBooking({
+        pickupDate: "T",
+        returnDate: "T",
+        status: Status.CONFIRMED,
+      } as Booking);
+    });
+  };
   return (
     <Modal
       onclickClose={onClose}
@@ -209,10 +232,21 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
               stylesInput={{
                 background: "transparent",
                 color: "#000",
+                width: "100%",
                 padding: "1px",
               }}
               placeholder="placa"
               type="text"
+              valueInput={newManualBooking.car?.licensePlate ?? ""}
+              changeValue={(value: string) => {
+                setNewManualBooking({
+                  ...newManualBooking,
+                  car: {
+                    ...newManualBooking.car,
+                    licensePlate: value,
+                  },
+                });
+              }}
             />
           </div>
           <div>
@@ -231,9 +265,20 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 background: "transparent",
                 color: "#000",
                 padding: "1px",
+                width: "100%",
               }}
               placeholder="Marca"
               type="text"
+              valueInput={newManualBooking.car?.brand ?? ""}
+              changeValue={(value: string) => {
+                setNewManualBooking({
+                  ...newManualBooking,
+                  car: {
+                    ...newManualBooking.car,
+                    brand: value,
+                  },
+                });
+              }}
             />
           </div>
           <div>
@@ -252,13 +297,24 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 background: "transparent",
                 color: "#000",
                 padding: "1px",
+                width: "100%",
               }}
               placeholder="Modelo"
               type="text"
+              valueInput={newManualBooking.car?.model ?? ""}
+              changeValue={(value: string) => {
+                setNewManualBooking({
+                  ...newManualBooking,
+                  car: {
+                    ...newManualBooking.car,
+                    model: value,
+                  },
+                });
+              }}
             />
           </div>
         </div>
-        <div style={{ background: "yellow" }}>
+        <div>
           <div>
             <div style={{ marginTop: "10px" }}>
               <span>Cliente:</span>
@@ -278,6 +334,16 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
               }}
               placeholder="Cliente"
               type="text"
+              valueInput={newManualBooking.client?.fullName}
+              changeValue={(value: string) => {
+                setNewManualBooking({
+                  ...newManualBooking,
+                  client: {
+                    ...newManualBooking.client,
+                    fullName: value,
+                  },
+                });
+              }}
             />
           </div>
           <div>
@@ -299,7 +365,17 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 width: "100%",
               }}
               placeholder="Correo"
-              type="text"
+              type="email"
+              valueInput={newManualBooking.client?.email}
+              changeValue={(value: string) => {
+                setNewManualBooking({
+                  ...newManualBooking,
+                  client: {
+                    ...newManualBooking.client,
+                    email: value,
+                  },
+                });
+              }}
             />
           </div>
           <div>
@@ -320,12 +396,23 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 padding: "1px",
                 width: "100%",
               }}
-              placeholder="Correo"
+              placeholder="Celular"
               type="number"
+              valueInput={newManualBooking.client?.phoneNumber}
+              changeValue={(value: string) => {
+                setNewManualBooking({
+                  ...newManualBooking,
+
+                  client: {
+                    ...newManualBooking.client,
+                    phoneNumber: value,
+                  },
+                });
+              }}
             />
           </div>
         </div>
-        <div style={{ background: "green" }}>
+        <div>
           <div>
             <div style={{ marginTop: "10px" }}>
               <span>Dirección:</span>
@@ -345,6 +432,17 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
               }}
               placeholder="Dirección"
               type="text"
+              valueInput={newManualBooking.client?.address}
+              changeValue={(value: string) => {
+                setNewManualBooking({
+                  ...newManualBooking,
+
+                  client: {
+                    ...newManualBooking.client,
+                    address: value,
+                  },
+                });
+              }}
             />
           </div>
           <div>
@@ -360,18 +458,131 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
               }}
               backgroundcolor="rgba(255, 255, 255, 0.25)"
               arrayOptions={[
-                { key: "FEMALE", value: "Female" },
                 {
                   key: "MALE",
-                  value: "Male",
+                  value: "Hombre",
                 },
-                { key: "OTHER", value: "Other" },
+                { key: "FEMALE", value: "Mujer" },
+                { key: "OTHER", value: "Otro" },
               ]}
+              value={newManualBooking?.client?.gender ?? ""}
               placeholder="Genero"
+              onChange={(e: EventChange) => {
+                console.log(e.target.value);
+                setNewManualBooking({
+                  ...newManualBooking,
+                  client: {
+                    ...newManualBooking.client,
+                    gender: e.target.value as Gender,
+                  },
+                });
+              }}
+            />
+            <div style={{ marginTop: "20px" }}>
+              <ButtonPrincipalUI
+                sx={{ background: "#E96F45", width: "80%" }}
+                onClick={handleSubmit}
+              >
+                Crear Reserva
+              </ButtonPrincipalUI>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div>
+            <div style={{ marginTop: "10px" }}>
+              <span>Precio por dia:</span>
+            </div>
+            <InputUI
+              stylesContainer={{
+                marginTop: "10px",
+                padding: "4px",
+                border: "1px solid rgba(213, 221, 234, 0.47)",
+              }}
+              backgroundcolor="rgba(255, 255, 255, 0.25)"
+              stylesInput={{
+                background: "transparent",
+                color: "#000",
+                padding: "1px",
+                width: "100%",
+              }}
+              placeholder="Precio por dia"
+              type="number"
+              valueInput={newManualBooking.car?.price?.toString() ?? ""}
+              changeValue={(value: string) => {
+                console.log(value);
+                setNewManualBooking({
+                  ...newManualBooking,
+                  car: {
+                    ...newManualBooking.car,
+
+                    price: parseFloat(value),
+                  },
+                });
+              }}
+            />
+          </div>{" "}
+          <div>
+            <div style={{ marginTop: "10px" }}>
+              <span>Total:</span>
+            </div>
+            <InputUI
+              stylesContainer={{
+                marginTop: "10px",
+                padding: "4px",
+                border: "1px solid rgba(213, 221, 234, 0.47)",
+              }}
+              backgroundcolor="rgba(255, 255, 255, 0.25)"
+              stylesInput={{
+                background: "transparent",
+                color: "#000",
+                padding: "1px",
+                width: "100%",
+              }}
+              placeholder="Total"
+              type="number"
+              valueInput={newManualBooking.price?.toString() ?? ""}
+              changeValue={(value: string) => {
+                console.log(value);
+                setNewManualBooking({
+                  ...newManualBooking,
+                  price: parseFloat(value),
+                });
+              }}
+            />
+          </div>
+          <div>
+            <div style={{ marginTop: "10px" }}>
+              <span>Metodo de pago:</span>
+            </div>
+
+            <SelectInputUI
+              width="80%"
+              stylesContainer={{
+                marginTop: "10px",
+                padding: "4px",
+                border: "1px solid rgba(213, 221, 234, 0.47)",
+              }}
+              backgroundcolor="rgba(255, 255, 255, 0.25)"
+              arrayOptions={[
+                { key: "MERCADO_PAGO", value: "Mercado Pago" },
+                {
+                  key: "MANUAL",
+                  value: "Manual",
+                },
+                { key: "OTHER", value: "Otro" },
+              ]}
+              value={newManualBooking.paymentMethod ?? ""}
+              onChange={(e: EventChange) => {
+                setNewManualBooking({
+                  ...newManualBooking,
+                  paymentMethod: e.target.value,
+                });
+              }}
+              placeholder="Metodo de pago"
             />
           </div>
         </div>
-        <div style={{background:"red"}}></div>
       </Container>
     </Modal>
   );
@@ -382,13 +593,9 @@ export default ModalNewBooking;
 /*
 input CreateBookingManual {
 
-  car: CreateCarDetails
+
   price: Float
-
-
-  client: CreateClientDetails
   status: String
-  
   paymentMethod: PaymentMethod
 }
 */

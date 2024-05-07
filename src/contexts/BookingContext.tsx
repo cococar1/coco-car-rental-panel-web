@@ -2,7 +2,7 @@
 import { createContext, useContext } from "react";
 
 import { BookingHookType } from "@/interfaces/booking.interface";
-import { useBooking } from "@/hooks/usBooking";
+import { useBooking } from "@/hooks/useBooking";
 
 export const BookingContext = createContext({} as BookingHookType);
 
