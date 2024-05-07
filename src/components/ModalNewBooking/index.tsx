@@ -2,7 +2,6 @@ import moment from "moment";
 import { parseZonedDateTime } from "@internationalized/date";
 import Modal from "../Modal";
 import { Container, FormHomeContainerColumn } from "./style";
-import { DateRangePicker } from "@nextui-org/react";
 import { ChangeEvent, useState } from "react";
 
 import InputUI from "@/ui/InputUI";
