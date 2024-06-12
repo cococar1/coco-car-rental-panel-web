@@ -13,6 +13,9 @@ import { Providers } from "@/contexts/Providers";
 import { useApollo } from "@/lib/apolloClient";
 import { GlobalStyle } from "@/styles/gobal.style";
 import { SessionProvider } from "next-auth/react";
+import {CategoryScale} from 'chart.js'; 
+import Chart from 'chart.js/auto';
+Chart.register(CategoryScale);
 interface MyAppProps extends AppProps {
   session?: Session | null;
 }

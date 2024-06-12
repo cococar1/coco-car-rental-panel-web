@@ -1,11 +1,10 @@
-
 export interface User {
-  _id:      string;
+  _id: string;
   fullName: string;
   username: string;
-  email:    string;
-  photo:    null;
-  role: "ADMIN" | "USER" 
+  email: string;
+  photo: null;
+  role: "ADMIN" | "USER";
   accessToken?: string;
   refreshToken?: string;
 }
@@ -21,4 +20,11 @@ export interface UserResponse {
   refreshToken: string;
 }
 
-
+export interface UserHookType {
+  getCountUser: () => void;
+  countUser: {
+    data: number | null;
+    loading: boolean;
+    error: any;
+  };
+}

@@ -1,17 +1,30 @@
 "use client";
 
+import AnalysisPreviousMonth from "@/components/AnalysisPreviousMoth";
+import DataAnalysisLine from "@/components/DataLine";
 import { LoaderUI } from "@/components/LoaderUI";
+import UserDonutChart from "@/components/UseCountChart";
+import { useUserContext } from "@/contexts/UserContext";
 import DashboardLayout from "@/layouts/Dashboard.layout";
+import {
+  ContainerFirstAnalysis,
+  ContainerHome,
+  ContainerSecondAnalysis,
+} from "@/styles/home.style";
 import { signOut, useSession } from "next-auth/react";
 
 export default function Home() {
-  const { data: session, status: statusNexth } = useSession();
-  console.log("secion", session);
-  if (statusNexth === "unauthenticated") {
+  const { data: session, status: statusNextAuth } = useSession();
+
+  const {
+    countUser: { data: countUserData },
+  } = useUserContext();
+
+  if (statusNextAuth === "unauthenticated") {
     signOut({ redirect: true, callbackUrl: "/login" });
   }
 
-  if (statusNexth == "loading") {
+  if (statusNextAuth == "loading") {
     return (
       <main>
         <div
@@ -30,7 +43,48 @@ export default function Home() {
   return (
     <main>
       <DashboardLayout>
-        <p></p>
+        <ContainerHome>
+          <ContainerFirstAnalysis style={{ height: "50%" }}>
+            <DataAnalysisLine />
+          </ContainerFirstAnalysis>
+          <ContainerSecondAnalysis>
+            <div>
+              {" "}
+              {/* <Doughnut
+                data={{
+                  labels: sourceData.map((data) => data.label),
+                  datasets: [
+                    {
+                      label: "Count",
+                      data: sourceData.map((data) => data.value),
+                      backgroundColor: [
+                        "rgba(43, 63, 229, 0.8)",
+                        "rgba(250, 192, 19, 0.8)",
+                        "rgba(253, 135, 135, 0.8)",
+                      ],
+                      borderColor: [
+                        "rgba(43, 63, 229, 0.8)",
+                        "rgba(250, 192, 19, 0.8)",
+                        "rgba(253, 135, 135, 0.8)",
+                      ],
+                    },
+                  ],
+                }}
+                options={{
+                  plugins: {
+                    title: {
+                      text: "Revenue Sources",
+                    },
+                  },
+                }}
+              /> */}
+              <UserDonutChart userCount={countUserData ?? 0} />
+            </div>
+            <div>
+              <AnalysisPreviousMonth />
+            </div>
+          </ContainerSecondAnalysis>
+        </ContainerHome>
       </DashboardLayout>
     </main>
   );

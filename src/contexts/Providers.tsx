@@ -11,19 +11,22 @@ import { ThemeProvider } from "styled-components";
 import { NextUIProvider } from "@nextui-org/react";
 import { BookingProvider } from "./BookingContext";
 import { ContactProvider } from "./ContactContext";
+import { UserProvider } from "./UserContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <NextUIProvider>
       <ThemeProvider theme={{}}>
         <AuthProvider>
-          <ExtraProvider>
-            <CarsProvider>
-              <BookingProvider>
-                <ContactProvider>{children}</ContactProvider>
-              </BookingProvider>
-            </CarsProvider>
-          </ExtraProvider>
+          <UserProvider>
+            <ExtraProvider>
+              <CarsProvider>
+                <BookingProvider>
+                  <ContactProvider>{children}</ContactProvider>
+                </BookingProvider>
+              </CarsProvider>
+            </ExtraProvider>
+          </UserProvider>
         </AuthProvider>
       </ThemeProvider>
     </NextUIProvider>
