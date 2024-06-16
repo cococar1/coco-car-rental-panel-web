@@ -22,11 +22,22 @@ export const ContainerSelectInput = styled.div<{
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    background-image: url("/svg/arrowdownInput.svg");
+    background-image: url("/assets/svg/arrowdownInput.svg");
     background-size: 30px;
     background-repeat: no-repeat;
     background-position: right center;
     padding: 5px;
   }
+`;
 
+export const Select = styled.select`
+  width: 100%;
+  appearance: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  &.placeholder {
+    color: red; /* Cambia este color al que desees para el placeholder */
+  }
 `;

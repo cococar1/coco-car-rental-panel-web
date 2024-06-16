@@ -23,7 +23,6 @@ const WrapperPromotions: React.FC<WrapperPromotionsProps> = ({
       );
     }
 
-
     return filteredPromotion;
   }, [data, filterSearch, hasSearchFilter]);
 
@@ -36,6 +35,7 @@ const WrapperPromotions: React.FC<WrapperPromotionsProps> = ({
           date={e.createdAt}
           title={e.title}
           content={e.description}
+          _id={e._id}
         />
       ))}
     </ContainerPromotions>

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useMutation, useLazyQuery } from "@apollo/client";
 import { toast } from "react-toastify";
 import { CREATE_BOOKING_MANUAL } from "@/gql/booking/booking.mutation";
-import { ALL_BOOKING } from "@/gql/booking/booking.query";
+import { ALL_BOOKING, ANALYSIS_BOOKING } from "@/gql/booking/booking.query";
 import { BookingHookType } from "@/interfaces/booking.interface";
 
 export const useBooking = (): BookingHookType => {
@@ -15,6 +15,9 @@ export const useBooking = (): BookingHookType => {
   // const [deleteBookingFn, deleteBookingRes] = useMutation(DELETE_BOOKING_MANUAL);
 
   const [getBookings, getBookingRes] = useLazyQuery(ALL_BOOKING);
+
+  const [getAnalysisBooking, getAnalysisBookingRes] =
+    useLazyQuery(ANALYSIS_BOOKING);
 
   const createBooking = (
     data: any,
@@ -101,11 +104,21 @@ export const useBooking = (): BookingHookType => {
     ) {
       getBookings();
     }
+
+    if (!getAnalysisBookingRes.data) {
+      getAnalysisBooking();
+    }
   }, []);
 
   return {
     createBooking,
     getBookings,
+    getAnalysisBooking,
+    analysisOptions: {
+      data: getAnalysisBookingRes.data?.analyticsYear ?? [],
+      loading: getAnalysisBookingRes.loading,
+      error: getAnalysisBookingRes.error,
+    },
     // deleteBooking,
     // updateBooking,
     bookingsOptions: {
@@ -118,6 +131,7 @@ export const useBooking = (): BookingHookType => {
       loading: createBookingRes.loading,
       error: createBookingRes.error,
     },
+
     // updateOptions: {
     //   data: updateBookingRes.data?.updateBooking,
     //   loading: updateBookingRes.loading,

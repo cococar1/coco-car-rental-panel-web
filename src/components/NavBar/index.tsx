@@ -49,20 +49,14 @@ export const NavBar: any = ({
           ></InputUI>
         </div>
         <ul>
-          <NavItem>
+          {/* <NavItem>
             <EmailIcon width={30} height={30} />
           </NavItem>
 
           <NavItem>
             <BellIcon width={30} height={30} />
           </NavItem>
-          {/* <NavItem>
-            <ButtonPrincipalContainer
-              style={{ borderRadius: "40px", padding: "12px" }}
-            >
-              Registrate
-            </ButtonPrincipalContainer>
-          </NavItem> */}
+     */}
         </ul>
       </nav>
     </NavbarContainer>

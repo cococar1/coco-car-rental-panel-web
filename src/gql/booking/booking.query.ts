@@ -29,3 +29,13 @@ export const ALL_BOOKING = gql`
     }
   }
 `;
+
+export const ANALYSIS_BOOKING = gql`
+  {
+    analyticsYear {
+      bookings
+      month
+      totalRevenue
+    }
+  }
+`;

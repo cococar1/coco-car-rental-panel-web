@@ -1,0 +1,11 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icon">
+<rect id="Rectangle" width="60" height="60" rx="14" fill="#FFF3EC"/>
+<g id="Shape">
+<rect id="Rectangle_2" x="17" y="18" width="27" height="27" rx="2" stroke="#E96F45" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path" d="M36.5 15V21" stroke="#E96F45" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_2" d="M24.5 15V21" stroke="#E96F45" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_3" d="M17 27H44" stroke="#E96F45" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>

@@ -292,12 +292,12 @@ export default function TableBookings({
 
   const bottomContent = React.useMemo(() => {
     return (
-      <div className="flex w-full justify-center">
+      <div className="flex w-full justify-center mb-10 z-10">
         <Pagination
           isCompact
           showControls
           showShadow
-          color="primary"
+          className="pagination-color"
           page={page}
           total={pages}
           onChange={(page) => setPage(page)}

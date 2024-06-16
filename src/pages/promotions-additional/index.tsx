@@ -95,12 +95,14 @@ const PromotionAdditionalPage: React.FC<PromotionAdditionalPageProps> = () => {
           </div>
         )}
         {!loading && dataExtras != undefined && (
-          <WrapperPromotions
-            filterSearch={search}
-            data={dataExtras}
-          ></WrapperPromotions>
+          <div style={{ overflow: "auto" }}>
+            <WrapperPromotions
+              filterSearch={search}
+              data={dataExtras}
+            ></WrapperPromotions>
+          </div>
         )}
-        {statusModal && (
+        {statusModal && ( 
           <WrapperModal
             onclick={() => {
               setStatusModal(!statusModal);
@@ -193,9 +195,9 @@ const PromotionAdditionalPage: React.FC<PromotionAdditionalPageProps> = () => {
                     height: "40px",
                     width: "80px",
                     background: "#fff",
-                    color: "#E96F45",
+                    color: "rgb(27, 27, 27)",
                     borderRadius: "10px",
-                    border: "1px solid #E96F45 ",
+                    border: "1px solid rgb(27, 27, 27) ",
                   }}
                   onClick={() => {
                     setStatusModal(!statusModal);
@@ -207,7 +209,7 @@ const PromotionAdditionalPage: React.FC<PromotionAdditionalPageProps> = () => {
                   sx={{
                     height: "40px",
                     width: "80px",
-                    background: "#E96F45",
+                    background: "rgb(27, 27, 27)",
                     color: "#fff",
                     borderRadius: "10px",
                   }}

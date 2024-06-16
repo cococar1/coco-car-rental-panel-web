@@ -1,26 +1,32 @@
 import { Line } from "react-chartjs-2";
 import { Chart, ChartData, ChartOptions } from "chart.js";
 import { useRef, useEffect, useState } from "react";
+import { useBookingContext } from "@/contexts/BookingContext";
 
 interface AnalysisPreviousMonthProps {}
 
 const AnalysisPreviousMonth: React.FC<AnalysisPreviousMonthProps> = () => {
   const chartRef = useRef<Chart<"line"> | null>(null);
   const [gradient, setGradient] = useState<CanvasGradient | null>(null);
+  const {
+    analysisOptions: { data: analysisData },
+  } = useBookingContext();
 
   // Datos de ingresos por mes
-  const revenueData = [
-    { month: "Jan", revenue: 64854 },
-    { month: "Feb", revenue: 54628 },
-    { month: "Mar", revenue: 117238 },
-    // Agrega más datos aquí si es necesario
-  ];
+  const revenueData = analysisData;
+  console.log(revenueData);
+  //  [
+  //   { month: "Jan", revenue: 64854 },
+  //   { month: "Feb", revenue: 54628 },
+  //   { month: "Mar", revenue: 117238 },
+  //   // Agrega más datos aquí si es necesario
+  // ];
 
   // Calcula la diferencia entre los ingresos de un mes y el mes anterior
   const comparisonData = [];
   for (let i = 1; i < revenueData.length; i++) {
-    const currentRevenue = revenueData[i].revenue;
-    const previousRevenue = revenueData[i - 1].revenue;
+    const currentRevenue = revenueData[i].totalRevenue;
+    const previousRevenue = revenueData[i - 1].totalRevenue;
     const difference = currentRevenue - previousRevenue;
     comparisonData.push({ month: revenueData[i].month, difference });
   }

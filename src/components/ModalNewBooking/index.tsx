@@ -479,7 +479,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
             />
             <div style={{ marginTop: "20px" }}>
               <ButtonPrincipalUI
-                sx={{ background: "#E96F45", width: "80%" }}
+                sx={{ background: "rgb(27, 27, 27)", width: "80%" }}
                 onClick={handleSubmit}
               >
                 Crear Reserva

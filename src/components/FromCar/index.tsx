@@ -13,6 +13,12 @@ import SelectInputUI from "@/ui/SelectInputUI";
 import { ButtonPrincipalUI } from "@/ui/ButtonPrincipalUi";
 import { TagsInput } from "react-tag-input-component";
 import { EventChange } from "@/types/general";
+import {
+  brandFilterData,
+  categoriesFilterData,
+  fuelTypeData,
+  numberFilterData,
+} from "./dataSelect";
 
 interface FormCarProps {
   status: boolean;
@@ -42,14 +48,27 @@ const FormCar: React.FC<FormCarProps> = ({
       }}
     >
       <ContainerFromPrincipal>
-        <FileInputUI
-          stylesContainer={{ width: "50%" }}
-          file={file}
-          setFile={setFile}
-        ></FileInputUI>
         <div
           style={{
-            width: "50%",
+            height: "250px",
+            background: "#E6E6E6",
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+            alignItems: "center",
+            borderRadius: "15px",
+            // margin:"10px 0px"
+          }}
+        >
+          <FileInputUI
+            stylesContainer={{ height: "230px", width: "200px" }}
+            file={file}
+            setFile={setFile}
+          ></FileInputUI>
+        </div>
+        <div
+          style={{
+            width: "100%",
             marginTop: "0px",
             display: "flex",
             flexDirection: "column",
@@ -57,13 +76,13 @@ const FormCar: React.FC<FormCarProps> = ({
           }}
         >
           <ElementFromPrincipal>
-            <label form="name">Nombre:</label>
+            <label form="name">Nombre del vehiculo:</label>
             <InputUI
               changeValue={(name: string) => setCar({ ...car, name })}
               backgroundcolor="#FFFFFF"
               stylesContainer={{
                 height: "40px",
-                width: "80%",
+                width: "100%",
               }}
               stylesInput={{ width: "100%", height: "25px" }}
               type="text"
@@ -82,7 +101,7 @@ const FormCar: React.FC<FormCarProps> = ({
               backgroundcolor="#FFFFFF"
               stylesContainer={{
                 height: "40px",
-                width: "80%",
+                width: "100%",
               }}
               stylesInput={{ width: "100%", height: "25px" }}
               type="text"
@@ -96,7 +115,7 @@ const FormCar: React.FC<FormCarProps> = ({
             <label form="subTitle">Sub titulo:</label>
             <InputUI
               backgroundcolor="#FFFFFF"
-              stylesContainer={{ height: "40px", width: "80%" }}
+              stylesContainer={{ height: "40px", width: "100%" }}
               stylesInput={{ width: "100%", height: "25px" }}
               type="text"
               idInput="subTitle"
@@ -107,10 +126,26 @@ const FormCar: React.FC<FormCarProps> = ({
             />
           </ElementFromPrincipal>
           <ElementFromPrincipal>
-            <label form="price">Precio Por dia:</label>
+            <h2>Descripción</h2>
+            <TextAreaUI
+              placeholder="Esta es una descripción"
+              stylesInput={{
+                width: "100%",
+                minHeight: "70px",
+                borderRadius: "10px",
+                border: "1px solid rgba(213, 221, 234, 0.47)",
+              }}
+              changeValue={(description: string) =>
+                setCar({ ...car, description })
+              }
+              value={car.description ?? ""}
+            ></TextAreaUI>
+          </ElementFromPrincipal>
+          <ElementFromPrincipal>
+            <label form="price">Precio por dia:</label>
             <InputUI
               backgroundcolor="#FFFFFF"
-              stylesContainer={{ height: "40px", width: "80%" }}
+              stylesContainer={{ height: "40px", width: "30%" }}
               stylesInput={{ width: "100%", height: "25px" }}
               type="Number"
               idInput="price"
@@ -133,7 +168,7 @@ const FormCar: React.FC<FormCarProps> = ({
         }}
       >
         <h2>Marca</h2>
-        <InputUI
+        {/* <InputUI
           backgroundcolor="#FFFFFF"
           stylesContainer={{ height: "40px", width: "40%" }}
           stylesInput={{ width: "100%", height: "25px" }}
@@ -143,6 +178,22 @@ const FormCar: React.FC<FormCarProps> = ({
           placeholdercolor="#9ea3a8f8"
           changeValue={(brand: string) => setCar({ ...car, brand })}
           valueInput={car.brand?.toString()}
+        /> */}
+        <SelectInputUI
+          width="40%"
+          // stylesContainer={{  height: "20px" }}
+          styleSelect={{
+            height: "20px",
+
+            padding: "0px",
+          }}
+          arrayOptions={brandFilterData}
+          placeholder="Select"
+          backgroundcolor="#ffffff"
+          value={car.brand ?? ""}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setCar({ ...car, brand: e.target.value });
+          }}
         />
       </ElementFrom>
       <ElementFrom
@@ -154,7 +205,7 @@ const FormCar: React.FC<FormCarProps> = ({
         }}
       >
         <h2>Modelo</h2>
-        <InputUI
+        {/* <InputUI
           backgroundcolor="#FFFFFF"
           stylesContainer={{ height: "40px", width: "40%" }}
           stylesInput={{ width: "100%", height: "25px" }}
@@ -164,16 +215,23 @@ const FormCar: React.FC<FormCarProps> = ({
           placeholdercolor="#9ea3a8f8"
           changeValue={(model: string) => setCar({ ...car, model })}
           valueInput={car.model?.toString()}
+        /> */}
+        <SelectInputUI
+          width="40%"
+          // stylesContainer={{  height: "20px" }}
+          styleSelect={{
+            height: "20px",
+
+            padding: "0px",
+          }}
+          arrayOptions={categoriesFilterData}
+          placeholder="Select"
+          backgroundcolor="#ffffff"
+          value={car.model ?? ""}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setCar({ ...car, model: e.target.value });
+          }}
         />
-      </ElementFrom>
-      <ElementFrom>
-        <h2>Descripción</h2>
-        <TextAreaUI
-          placeholder="Esta es una descripción"
-          stylesInput={{ width: "100%", minHeight: "50px" }}
-          changeValue={(description: string) => setCar({ ...car, description })}
-          value={car.description ?? ""}
-        ></TextAreaUI>
       </ElementFrom>
       <ElementFrom>
         <h2>Caracteristicas</h2>
@@ -196,7 +254,7 @@ const FormCar: React.FC<FormCarProps> = ({
         }}
       >
         <h2>Capacidad maxima de personas</h2>
-        <InputUI
+        {/* <InputUI
           backgroundcolor="#ffffff"
           stylesContainer={{ width: "90px" }}
           stylesInput={{
@@ -209,6 +267,22 @@ const FormCar: React.FC<FormCarProps> = ({
             setCar({ ...car, countPerson: Number(countPerson) })
           }
           valueInput={car.countPerson?.toString()}
+        /> */}
+        <SelectInputUI
+          width="40%"
+          // stylesContainer={{  height: "20px" }}
+          styleSelect={{
+            height: "20px",
+
+            padding: "0px",
+          }}
+          arrayOptions={numberFilterData}
+          placeholder="Select"
+          backgroundcolor="#ffffff"
+          value={car.countPerson ?? ""}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setCar({ ...car, countPerson: Number(e.target.value) });
+          }}
         />
       </ElementFrom>
       <ElementFrom
@@ -220,7 +294,7 @@ const FormCar: React.FC<FormCarProps> = ({
         }}
       >
         <h2>Combustible</h2>
-        <InputUI
+        {/* <InputUI
           backgroundcolor="#ffffff"
           stylesContainer={{ width: "40%" }}
           stylesInput={{
@@ -232,6 +306,23 @@ const FormCar: React.FC<FormCarProps> = ({
           type="Text"
           changeValue={(fullType: string) => setCar({ ...car, fullType })}
           valueInput={car.fullType}
+        /> */}
+
+        <SelectInputUI
+          width="40%"
+          // stylesContainer={{  height: "20px" }}
+          styleSelect={{
+            height: "20px",
+
+            padding: "0px",
+          }}
+          arrayOptions={fuelTypeData}
+          placeholder="Select"
+          backgroundcolor="#ffffff"
+          value={car.fullType ?? ""}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setCar({ ...car, fullType: e.target.value });
+          }}
         />
       </ElementFrom>
       <ElementFrom
@@ -242,12 +333,12 @@ const FormCar: React.FC<FormCarProps> = ({
           padding: "10px 0px",
         }}
       >
-        <h2>Litros del baul</h2>
+        <h2>Litros maximo de baul</h2>
 
-        <h2>Maximo</h2>
+        {/* <h2>Maximo</h2> */}
         <InputUI
           backgroundcolor="#ffffff"
-          stylesContainer={{ width: "80px" }}
+          stylesContainer={{ width: "100px" }}
           stylesInput={{
             width: "100%",
             height: "20px",
@@ -272,7 +363,7 @@ const FormCar: React.FC<FormCarProps> = ({
           padding: "10px 0px",
         }}
       >
-        <h2>Tipo de cambio</h2>
+        <h2>Transmisión</h2>
         <SelectInputUI
           width="40%"
           // stylesContainer={{  height: "20px" }}
@@ -369,7 +460,7 @@ const FormCar: React.FC<FormCarProps> = ({
       </ElementFrom>
       <ElementFrom style={{ marginTop: "50px" }}>
         <ButtonPrincipalUI
-          sx={{ width: "100%", background: "#e96f45" }}
+          sx={{ width: "100%", background: "#1B1B1B" }}
           onClick={submitCar}
         >
           {textButtonSubmit}

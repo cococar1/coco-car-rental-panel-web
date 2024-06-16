@@ -52,7 +52,7 @@ const ItemMessage: React.FC<ItemMessageProps> = ({
           <p>{contact?.content}</p>
         </div>
         <div>
-          <ButtonNextUI color="danger" onClick={handleDeleteContact}>
+          <ButtonNextUI  className="background-black" color="danger" onClick={handleDeleteContact}>
             Delete
           </ButtonNextUI>
         </div>

@@ -1,14 +1,18 @@
+import { EventChange } from "@/types/general";
 import {
   ContainerCardAdditional,
+  ContainerCloseCard,
   ContainerContent,
   ContainerTicket,
 } from "./cardAdditional.style";
+import { useExtraContext } from "@/contexts/ExtraContext";
 
 interface CardAdditionalProps {
   type: string;
   date?: string | Date;
   title: string;
   content: string;
+  _id: string;
 }
 
 const CardAdditional: React.FC<CardAdditionalProps> = ({
@@ -16,9 +20,17 @@ const CardAdditional: React.FC<CardAdditionalProps> = ({
   date,
   title,
   content,
+  _id,
 }) => {
+  const { deleteExtra } = useExtraContext();
+  const deletePromotion = async (e: EventChange | any) => {
+    deleteExtra(_id);
+  };
   return (
     <ContainerCardAdditional>
+      <ContainerCloseCard>
+        <button onClick={deletePromotion}>X</button>
+      </ContainerCloseCard>
       <ContainerTicket>
         <p>{type}</p>
         <p>{date ? date.toString() : ""}</p>

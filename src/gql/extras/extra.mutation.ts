@@ -12,3 +12,12 @@ export const CREATE_EXTRA = gql`
     }
   }
 `;
+
+
+
+
+export const DELETE_EXTRA =gql`
+mutation DELETE_EXTRA($id:ID!){
+  removeExtra(id:$id)
+}
+`

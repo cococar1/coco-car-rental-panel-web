@@ -5,11 +5,10 @@ export const ContainerPromotions = styled.div`
   flex-wrap: wrap;
   gap: 25px;
   row-gap: 50px;
-  justify-content: space-around;
+  justify-content: flex-start;
   overflow-y: auto;
-  height: calc(100% - 108px);
+  /* height: calc(100% - 108px); */
   padding: 20px 0px;
-
   &::-webkit-scrollbar {
     width: 5px;
     border-radius: 7px; /* Tamaño del scrollbar */

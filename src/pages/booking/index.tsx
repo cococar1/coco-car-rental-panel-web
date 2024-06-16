@@ -62,7 +62,7 @@ const BookingPage: React.FC<BookingsListPageProps> = () => {
   return (
     <main style={{ position: "relative" }}>
       <DashboardLayout changeSearch={setSearch} valueSearch={search}>
-        <ContainerCardsPage>
+        <ContainerCardsPage >
           <ButtonPrincipalUI
             startIcon={<PlusIcon width={30} />}
             sx={{

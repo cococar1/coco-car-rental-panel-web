@@ -58,7 +58,7 @@ const ResultMessages: React.FC<ResultMessagesProps> = () => {
           placeholder="Buscar"
           positionIcon={"LEFT"}
           stylesContainer={{
-            width: "90%",
+            width: "100%",
             borderRadius: "50px",
             padding: "5px 15px",
             border: "2px solid #A098AE",

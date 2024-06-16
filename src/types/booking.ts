@@ -41,3 +41,9 @@ export enum Status {
   CONFIRMED = "confirmed",
   CANCELLED = "cancelled",
 }
+
+export interface AnalyticsYear {
+  bookings: number;
+  month: string;
+  totalRevenue: number;
+}

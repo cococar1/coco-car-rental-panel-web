@@ -35,11 +35,11 @@ export const DashboardNavBar: any = ({
       <nav>
         <ul>
           <NavItem style={{ height: "15vh" }} isactive={false}>
-            <Link href="/" style={{ width: "100px" }}>
+            <Link href="/" style={{ width: "100px" }} className="normalizeA">
               <ContainerLogoPrincipal>
-                <Image src={"./assets/svgs/iconPrincipal.svg"} fill alt="" />
+                <Image src={"/assets/images/logo-dark.png"} fill alt="" />
               </ContainerLogoPrincipal>
-              <p>Carplus</p>
+          
             </Link>
           </NavItem>
           <NavItem isactive={(mainRoute == "") as boolean}>

@@ -18,3 +18,36 @@
   --rti-tag: "#edf2f7",
   --rti-tag-remove: "#e53e3e",
 }
+
+
+
+
+
+.Switch--custom-colors {
+
+}
+
+
+.Switch--custom-colors-active >  span:first-of-type {
+  background-color: #E96F45 !important;
+}
+
+
+
+/* .Switch--custom-colors >  span >span{
+  background-color: yellow !important;
+} */
+
+
+.pagination-color >ul >span{
+  background-color: #E96F45 !important;
+  
+}
+
+.normalizeA{
+  width: 100% !important;
+}
+
+.background-black{
+  background-color:rgb(27, 27, 27) !important;
+}

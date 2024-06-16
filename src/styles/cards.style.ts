@@ -4,7 +4,7 @@ export const ContainerCardsPage = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 20px 0px;
+  padding:10px 0px 0px 0px;
   gap: 20px;
 `;
 

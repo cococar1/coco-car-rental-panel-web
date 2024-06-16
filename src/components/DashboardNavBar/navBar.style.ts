@@ -9,7 +9,7 @@ export const NavbarContainer = styled.header<{}>`
   top: 0;
   /* height: 60px; */
   height: 100vh;
-  width: 12%;
+  width: 13%;
 
   nav {
     display: flex;
@@ -34,7 +34,7 @@ export const NavbarContainer = styled.header<{}>`
       display: flex;
       /* background-color: blue; */
       list-style: none;
-      gap: 20px;
+      gap: 10px;
       display: flex;
       justify-content: space-between;
       flex-direction: column;
@@ -65,6 +65,7 @@ export const NavItem = styled.li<{ isactive?: boolean }>`
     align-items: center;
     color: #11263c;
     font-size: 14px;
+    padding-bottom: 10px;
     /* background-color: yellow; */
     /* background-color: yellow; */
     p {
@@ -93,10 +94,17 @@ export const ContainerLogoPrincipal = styled.div`
   display: block;
   position: relative;
   z-index: 10000;
+  width: 70% !important;
+  margin-top: 20px;
+  margin-left: 20px;
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
   img {
     position: relative !important;
-    height: 30px !important;
-    width: 30px !important;
+    /* height: 30px !important;
+    width: 500px !important; */
+    object-fit: cover;
     z-index: 10000;
   }
 `;

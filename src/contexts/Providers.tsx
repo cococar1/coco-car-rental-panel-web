@@ -12,6 +12,7 @@ import { NextUIProvider } from "@nextui-org/react";
 import { BookingProvider } from "./BookingContext";
 import { ContactProvider } from "./ContactContext";
 import { UserProvider } from "./UserContext";
+import { FaqProvider } from "./FaqContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -20,11 +21,13 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <AuthProvider>
           <UserProvider>
             <ExtraProvider>
-              <CarsProvider>
-                <BookingProvider>
-                  <ContactProvider>{children}</ContactProvider>
-                </BookingProvider>
-              </CarsProvider>
+              <FaqProvider>
+                <CarsProvider>
+                  <BookingProvider>
+                    <ContactProvider>{children}</ContactProvider>
+                  </BookingProvider>
+                </CarsProvider>
+              </FaqProvider>
             </ExtraProvider>
           </UserProvider>
         </AuthProvider>

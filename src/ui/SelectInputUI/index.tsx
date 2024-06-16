@@ -1,5 +1,5 @@
 import { SelectPrincipal } from "@/types/Select";
-import { ContainerSelectInput } from "./SelectInput.style";
+import { ContainerSelectInput, Select } from "./SelectInput.style";
 
 interface SelectInputUiProps {
   backgroundcolor: string;
@@ -28,7 +28,7 @@ const SelectInputUI: React.FC<SelectInputUiProps> = ({
       width={width}
       style={stylesContainer ? stylesContainer : {}}
     >
-      <select
+      <Select
         aria-placeholder={placeholder}
         aria-label={placeholder}
         onChange={onChange as any}
@@ -57,7 +57,7 @@ const SelectInputUI: React.FC<SelectInputUiProps> = ({
         <option value="10">Nissan</option>
         <option value="11">Toyota</option>
         <option value="12">Volvo</option> */}
-      </select>
+      </Select>
     </ContainerSelectInput>
   );
 };

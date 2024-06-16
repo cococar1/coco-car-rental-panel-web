@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ContainerFromPrincipal = styled.div`
   /* background-color: yellow; */
   display: flex;
+  flex-direction:   column;
   gap: 20px;
 `;
 
@@ -10,6 +11,7 @@ export const ElementFromPrincipal = styled.div`
   div {
     margin-top: 10px;
   }
+  margin-top: 10px;
 `;
 
 export const ElementFrom = styled.div`
