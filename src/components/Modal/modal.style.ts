@@ -13,9 +13,10 @@ export const ModalNewCar = styled.div`
 
 export const ContainerHeaderOptions = styled.div`
   display: flex;
-  height: 25px;
+  height: 40px;
   align-content: center;
   justify-content: end;
+  margin-bottom: 10px;
 `;
 
 export const ContainerContent = styled.div`

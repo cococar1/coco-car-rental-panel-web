@@ -247,7 +247,7 @@ export default function TableBookings({
                   >
                     view
                   </DropdownItem>
-                  <DropdownItem
+                  {/* <DropdownItem
                     onClick={(e) => {
                       //   setBooking(booking as Booking);
                       //   setStatus(true);
@@ -255,7 +255,7 @@ export default function TableBookings({
                     }}
                   >
                     Edit
-                  </DropdownItem>
+                  </DropdownItem> */}
                   <DropdownItem
                   // onClick={(e) => {
                   //   deleteBooking(booking._id, () => {});
