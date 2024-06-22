@@ -17,6 +17,9 @@ export const ContainerHeaderOptions = styled.div`
   align-content: center;
   justify-content: end;
   margin-bottom: 10px;
+  color: #0E0F11;
+  font-weight:500;
+  font-size: 18px;
 `;
 
 export const ContainerContent = styled.div`

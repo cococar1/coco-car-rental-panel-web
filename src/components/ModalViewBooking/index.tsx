@@ -23,7 +23,7 @@ const ModalViewBooking: React.FC<ModalViewBookingProps> = ({
     <Modal
       onclickClose={onClose}
       styleModal={{
-        height: "500px",
+        height: "680px",
         display: "flex",
         flexDirection: "column",
         width: "50%",
@@ -35,20 +35,11 @@ const ModalViewBooking: React.FC<ModalViewBookingProps> = ({
         justifyContent: "space-between",
         flexDirection: "column",
       }}
+      title="Detalle"
     >
-      <SectionAuto>
+      <SectionAuto style={{ marginTop: "10px" }}>
         <h2>Auto</h2>
-        <div>
-          <ContainerImage>
-            <Image
-              src={
-                data.car.image ??
-                "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"
-              }
-              fill
-              alt=""
-            />
-          </ContainerImage>
+        <div style={{ padding: "10px 0px" }}>
           <ContainerAutoData>
             <Item>
               <span>Marca: </span>
@@ -63,12 +54,23 @@ const ModalViewBooking: React.FC<ModalViewBookingProps> = ({
               <p> {data.car.licensePlate} </p>
             </Item>
           </ContainerAutoData>
+          <ContainerImage>
+            <Image
+              src={
+                data.car.image ??
+                "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"
+              }
+              fill
+              alt=""
+            />
+          </ContainerImage>
         </div>
       </SectionAuto>
 
       <SectionAuto>
         <h2>Cliente</h2>
-        <div>
+        <div style={{ padding: "10px 0px" }}>
+          {" "}
           <ContainerClientDataColumn>
             <Item>
               <span>Nombre:</span>
@@ -97,8 +99,8 @@ const ModalViewBooking: React.FC<ModalViewBookingProps> = ({
       </SectionAuto>
       <SectionAuto>
         <h2>Reserva</h2>
-        <div style={{ flexDirection: "column", gap: "10px" }}>
-          <div>
+        <div style={{ padding: "10px 0px" }}>
+          <ContainerClientDataColumn>
             <Item>
               <span>PickupDate:</span>
               <p>{new Date(data.pickupDate).toLocaleString()}</p>
@@ -107,8 +109,8 @@ const ModalViewBooking: React.FC<ModalViewBookingProps> = ({
               <span>Return Date:</span>
               <p>{new Date(data.returnDate).toLocaleString()}</p>
             </Item>
-          </div>
-          <div>
+          </ContainerClientDataColumn>
+          <ContainerClientDataColumn>
             <Item>
               <span>Precio:</span>
               <p>{data.price}</p>
@@ -121,18 +123,18 @@ const ModalViewBooking: React.FC<ModalViewBookingProps> = ({
               <span>Recojo:</span>
               <p>{data.pickupLocation ?? "No definido"}</p>
             </Item>
-          </div>
+          </ContainerClientDataColumn>
         </div>
       </SectionAuto>
       <div
-        style={{ marginTop: "10px", display: "flex", justifyContent: "center" }}
+        style={{ margin: "10px 0px", display: "flex", justifyContent: "flex-end",marginRight:"10%", }}
       >
         {data.paymentLink ? (
           <a
             style={{
-              padding: "5px 5px",
+              padding: "10px 10px",
               width: "200px",
-              background: "#E96F45",
+              background: "#000000",
               borderRadius: "10px",
               textAlign: "center",
               color: "#fff",

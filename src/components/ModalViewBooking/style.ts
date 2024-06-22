@@ -1,15 +1,18 @@
 import styled from "styled-components";
 
 export const SectionAuto = styled.div`
+  color: #333333;
   display: flex;
   gap: 5px;
   flex-direction: column;
   /* background-color: red; */
-  border-bottom: 1px solid gray;
-  padding-bottom:10px;
-&  h2{
+  /* border-bottom: 1px solid #EFF6FF; */
+  padding-bottom: 10px;
+  & h2 {
     font-weight: bold;
-}
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eff6ff;
+  }
   & div {
     display: flex;
     /* background-color: yellow; */
@@ -18,11 +21,10 @@ export const SectionAuto = styled.div`
 `;
 
 export const ContainerImage = styled.div`
-
   width: 50%;
   height: 150px;
   /* background-color: gray; */
-  & img{
+  & img {
     position: relative !important;
     object-fit: contain !important;
   }
@@ -35,7 +37,7 @@ export const ContainerAutoData = styled.div`
   & div {
     /* background-color: green; */
     span {
-      padding: 0px 20px;
+      padding: 0px 0px;
     }
   }
 `;
@@ -50,8 +52,10 @@ export const ContainerClientDataColumn = styled.div`
 // export const
 
 export const Item = styled.div`
+  /* background-color: red; */
   span {
-    padding: 0px 10px;
-    font-weight: bold;
+    padding: 0px 0px;
+    /* font-weight: bold; */
+    /* border-bottom: 1px solid #EFF6FF; */
   }
 `;

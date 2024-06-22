@@ -50,14 +50,14 @@ export default function TableBookings({
   valueFilterSearch: filterValue,
 }: TableBookingsProps) {
   const hasSearchFilter = Boolean(filterValue);
-  console.log(data);
-  const {
-    //deleteBooking, updateBooking,
-    getBookings,
-  } = useBookingContext();
+  // console.log(data);
+  // const {
+  //   //deleteBooking, updateBooking,
+  //   getBookings,
+  // } = useBookingContext();
   const [status, setStatus] = useState(false);
   const [statusView, setStatusView] = useState(false);
-  const [file, setFile] = useState<StateFile>({} as StateFile);
+  // const [file, setFile] = useState<StateFile>({} as StateFile);
 
   const [booking, setBooking] = useState({} as Booking);
   const submitBooking = () => {

@@ -3,12 +3,14 @@ import styled from "styled-components";
 export const Container = styled.div`
   height: 100%;
   display: grid;
+  overflow: auto;
+  max-height: 100%;
 `;
 
 export const ContainerDateBooking = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 100%;
+  /* height: 280px; */
 `;
 
 export const ContainerDateBookingColumn = styled.div`

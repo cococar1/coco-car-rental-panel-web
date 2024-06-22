@@ -61,7 +61,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
       onclickClose={onClose}
       title="Crear reserva"
       styleModal={{
-        height: "900px",
+        maxHeight: "98%",
         display: "flex",
         flexDirection: "column",
         width: "50%",
@@ -73,11 +73,13 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
         justifyContent: "space-between",
         color: "#0E0F11",
         flexDirection: "column",
-        paddingLeft:"40px"
+        paddingLeft:"40px",
+        // height: "300px",
+
       }}
     >
       <Container>
-        <ContainerDateBooking>
+        <ContainerDateBooking style={{height:"450px"}}>
           <ContainerDateBookingColumn>
             <div style={{ marginTop: "10px" }}>
               <span>Fecha de retiro</span>
@@ -407,7 +409,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
           </ContainerDateBookingColumn>
         </ContainerDateBooking>
 
-        <ContainerDateBooking>
+        <ContainerDateBooking style={{height:"270px"}}>
           <ContainerDateBookingColumn>
             {" "}
             <div>
