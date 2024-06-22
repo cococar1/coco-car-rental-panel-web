@@ -20,10 +20,11 @@ export const InputContainer = styled.div<{
     /* margin-right: 0px; */
     background-color: transparent;
     color: transparent;
-    background-image: url("/svg/EmpyInput.svg");
+    background-image: url("/assets/svg/empyInpt.svg");
     background-size: 20px;
     padding-right: 10px;
     padding-bottom: 10px;
+
   }
 
   align-items: center;
@@ -41,6 +42,7 @@ export const InputContainer = styled.div<{
     /* padding: 20px 20px;  */
     outline: none;
     border: 0;
+
   }
 
   input::placeholder {

@@ -61,7 +61,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
       onclickClose={onClose}
       title="Crear reserva"
       styleModal={{
-        height: "850px",
+        height: "900px",
         display: "flex",
         flexDirection: "column",
         width: "50%",
@@ -73,13 +73,14 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
         justifyContent: "space-between",
         color: "#0E0F11",
         flexDirection: "column",
+        paddingLeft:"40px"
       }}
     >
       <Container>
         <ContainerDateBooking>
           <ContainerDateBookingColumn>
             <div style={{ marginTop: "10px" }}>
-              <span>Fecha de retiro:</span>
+              <span>Fecha de retiro</span>
             </div>
             <InputUI
               type={"date"}
@@ -89,6 +90,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
               stylesContainer={{
                 marginTop: "10px",
                 width: "90%",
+                padding:"9px",
 
                 border: "1px solid rgba(213, 221, 234, 0.47)",
               }}
@@ -96,7 +98,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 background: "transparent",
                 color: "#000",
                 width: "100%",
-                padding: "1px",
+                padding:"0px"
               }}
               valueInput={
                 getDateFromFinalDate(newManualBooking.pickupDate?.toString()) ??
@@ -117,7 +119,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
             ></InputUI>
 
             <div style={{ marginTop: "10px" }}>
-              <span>Fecha de entrega:</span>
+              <span>Fecha de entrega</span>
             </div>
 
             <InputUI
@@ -128,11 +130,12 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
               stylesContainer={{
                 marginTop: "10px",
                 width: "90%",
+                padding:"9px",
                 border: "1px solid rgba(213, 221, 234, 0.47)",
               }}
               stylesInput={{
                 background: "transparent",
-                padding: "1px",
+                padding: "0px",
                 width: "100%",
                 color: "#000",
               }}
@@ -156,12 +159,12 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
 
             <div>
               <div style={{ marginTop: "10px" }}>
-                <span>Cliente:</span>
+                <span>Nombre titular reserva</span>
               </div>
               <InputUI
                 stylesContainer={{
                   marginTop: "10px",
-                  padding: "10px",
+                  padding: "9px",
                   border: "1px solid rgba(213, 221, 234, 0.47)",
                   width: "90%",
                 }}
@@ -169,7 +172,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 stylesInput={{
                   background: "transparent",
                   color: "#000",
-                  padding: "1px",
+                  padding: "0px",
                   width: "100%",
                 }}
                 placeholder="Cliente"
@@ -188,12 +191,12 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
             </div>
             <div>
               <div style={{ marginTop: "10px" }}>
-                <span>Celular:</span>
+                <span>Numero de telefono</span>
               </div>
               <InputUI
                 stylesContainer={{
                   marginTop: "10px",
-                  padding: "10px",
+                  padding: "9px",
                   width: "90%",
 
                   border: "1px solid rgba(213, 221, 234, 0.47)",
@@ -202,7 +205,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 stylesInput={{
                   background: "transparent",
                   color: "#000",
-                  padding: "1px",
+                  padding: "0px",
                   width: "100%",
                 }}
                 placeholder="Celular"
@@ -220,11 +223,45 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 }}
               />
             </div>
+            <div>
+            <div style={{ marginTop: "10px" }}>
+              <span>Dirección del cliente:</span>
+            </div>
+            <InputUI
+              stylesContainer={{
+                marginTop: "10px",
+                width:"90%",
+                padding:"9px",
+                border: "1px solid rgba(213, 221, 234, 0.47)",
+              }}
+              backgroundcolor="rgba(255, 255, 255, 0.25)"
+              stylesInput={{
+                background: "transparent",
+                color: "#000",
+                padding: "0px",
+                width: "100%",
+              }}
+              placeholder="Dirección"
+              type="text"
+              valueInput={newManualBooking.client?.address}
+              changeValue={(value: string) => {
+                setNewManualBooking({
+                  ...newManualBooking,
+
+                  client: {
+                    ...newManualBooking.client,
+                    address: value,
+                  },
+                });
+              }}
+            />
+          </div> 
+
           </ContainerDateBookingColumn>
 
           <ContainerDateBookingColumn>
             <div style={{ marginTop: "10px" }}>
-              <span>Hora:</span>
+              <span>Hora</span>
             </div>
 
             <InputUI
@@ -234,13 +271,13 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
               backgroundcolor="rgba(255, 255, 255, 0.25)"
               stylesContainer={{
                 marginTop: "10px",
-                padding: "10px",
+                padding: "9px",
                 width: "90%",
                 border: "1px solid rgba(213, 221, 234, 0.47)",
               }}
               stylesInput={{
                 background: "transparent",
-                padding: "1px",
+                padding: "0px",
                 color: "#000",
                 width: "100%",
               }}
@@ -262,7 +299,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
               }}
             ></InputUI>
             <div style={{ marginTop: "10px" }}>
-              <span>Hora:</span>
+              <span>Hora</span>
             </div>
 
             <InputUI
@@ -272,12 +309,13 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
               backgroundcolor="rgba(255, 255, 255, 0.25)"
               stylesContainer={{
                 marginTop: "10px",
+                padding:"9px",
                 width: "90%",
                 border: "1px solid rgba(213, 221, 234, 0.47)",
               }}
               stylesInput={{
                 background: "transparent",
-                padding: "1px",
+                padding: "0px",
                 color: "#000",
                 width: "100%",
               }}
@@ -301,12 +339,12 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
 
             <div>
               <div style={{ marginTop: "10px" }}>
-                <span>Correo:</span>
+                <span>Correo electronico </span>
               </div>
               <InputUI
                 stylesContainer={{
                   marginTop: "10px",
-                  padding: "10px",
+                  padding: "9px",
                   width: "90%",
                   border: "1px solid rgba(213, 221, 234, 0.47)",
                 }}
@@ -314,7 +352,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 stylesInput={{
                   background: "transparent",
                   color: "#000",
-                  padding: "1px",
+                  padding: "0px",
                   width: "100%",
                 }}
                 placeholder="Correo"
@@ -340,7 +378,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 stylesContainer={{
                   marginTop: "10px",
                   border: "1px solid rgba(213, 221, 234, 0.47)",
-                  padding: "10px",
+                  padding: "4.5px",
                   width: "90%",
                 }}
                 backgroundcolor="rgba(255, 255, 255, 0.25)"
@@ -380,7 +418,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 stylesContainer={{
                   marginTop: "10px",
                   border: "1px solid rgba(213, 221, 234, 0.47)",
-                  padding: "10px",
+                  padding: "9px",
                   width: "90%",
                 }}
                 backgroundcolor="rgba(255, 255, 255, 0.25)"
@@ -388,7 +426,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                   background: "transparent",
                   color: "#000",
                   width: "100%",
-                  padding: "1px",
+                  padding: "0px",
                 }}
                 placeholder="placa"
                 type="text"
@@ -411,7 +449,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
               <InputUI
                 stylesContainer={{
                   marginTop: "10px",
-                  padding: "10px",
+                  padding: "9px",
                   width: "90%",
                   border: "1px solid rgba(213, 221, 234, 0.47)",
                 }}
@@ -419,7 +457,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 stylesInput={{
                   background: "transparent",
                   color: "#000",
-                  padding: "1px",
+                  padding: "0px",
                   width: "100%",
                 }}
                 placeholder="Modelo"
@@ -446,7 +484,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 stylesContainer={{
                   marginTop: "10px",
                   border: "1px solid rgba(213, 221, 234, 0.47)",
-                  padding: "10px",
+                  padding: "4.5px",
                   width: "90%",
                 }}
                 backgroundcolor="rgba(255, 255, 255, 0.25)"
@@ -477,7 +515,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
               <InputUI
                 stylesContainer={{
                   marginTop: "10px",
-                  padding: "10px",
+                  padding: "9px",
                   width: "90%",
                   border: "1px solid rgba(213, 221, 234, 0.47)",
                 }}
@@ -485,7 +523,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 stylesInput={{
                   background: "transparent",
                   color: "#000",
-                  padding: "1px",
+                  padding: "0px",
                   width: "100%",
                 }}
                 placeholder="Marca"
@@ -510,7 +548,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 <InputUI
                   stylesContainer={{
                     marginTop: "10px",
-                    padding: "10px",
+                    padding: "9px",
                     width: "90%",
                     border: "1px solid rgba(213, 221, 234, 0.47)",
                   }}
@@ -518,7 +556,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                   stylesInput={{
                     background: "transparent",
                     color: "#000",
-                    padding: "1px",
+                    padding: "0px",
                     width: "100%",
                   }}
                   placeholder="Precio por dia"
@@ -545,7 +583,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
               <InputUI
                 stylesContainer={{
                   marginTop: "10px",
-                  padding: "10px",
+                  padding: "9px",
                   width: "90%",
                   border: "1px solid rgba(213, 221, 234, 0.47)",
                 }}
@@ -553,7 +591,7 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
                 stylesInput={{
                   background: "transparent",
                   color: "#000",
-                  padding: "1px",
+                  padding: "0px",
                   width: "100%",
                 }}
                 placeholder="Total"
@@ -571,42 +609,11 @@ const ModalNewBooking: React.FC<ModalNewBookingProps> = ({ onClose }) => {
           </ContainerDateBookingColumn>
         </ContainerDateBooking>
 
-        {/* <div>
-            <div style={{ marginTop: "10px" }}>
-              <span>Dirección:</span>
-            </div>
-            <InputUI
-              stylesContainer={{
-                marginTop: "10px",
-                padding: "4px",
-                border: "1px solid rgba(213, 221, 234, 0.47)",
-              }}
-              backgroundcolor="rgba(255, 255, 255, 0.25)"
-              stylesInput={{
-                background: "transparent",
-                color: "#000",
-                padding: "1px",
-                width: "100%",
-              }}
-              placeholder="Dirección"
-              type="text"
-              valueInput={newManualBooking.client?.address}
-              changeValue={(value: string) => {
-                setNewManualBooking({
-                  ...newManualBooking,
+        {/* */}
 
-                  client: {
-                    ...newManualBooking.client,
-                    address: value,
-                  },
-                });
-              }}
-            />
-          </div> */}
-
-        <div style={{ marginTop: "20px" }}>
+        <div style={{ marginTop: "20px",width:"100%",display:"flex",justifyContent:"flex-end",height:"50px" }}>
           <ButtonPrincipalUI
-            sx={{ background: "rgb(27, 27, 27)", width: "80%" }}
+            sx={{ background: "rgb(27, 27, 27)", width: "200px",marginRight:"5%",height:"50px" }}
             onClick={handleSubmit}
           >
             Crear Reserva
