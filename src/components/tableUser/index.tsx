@@ -23,14 +23,10 @@ import {
   Tooltip,
 } from "@nextui-org/react";
 
-import { columns, users, statusOptions } from "./data";
+import { columns, users } from "./data";
 
-import SearchIcon from "../assets/svgs/searchIcon";
-import { capitalize } from "@/utils";
 import { VerticalDotsIcon } from "../assets/svgs/verticalDotsIcon";
-import { PlusIcon } from "../assets/svgs/plusIcon";
-import { ChevronDownIcon } from "../assets/svgs/chevrowDownIcon";
-import { ToggleSwitch } from "../Switch";
+
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
   active: "success",
