@@ -4,6 +4,7 @@ export const ContainerPromotions = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
+  height:78vh;
   row-gap: 50px;
   justify-content: flex-start;
   overflow-y: auto;

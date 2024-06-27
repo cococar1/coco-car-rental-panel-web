@@ -71,7 +71,7 @@ const PromotionAdditionalPage: React.FC<PromotionAdditionalPageProps> = () => {
               background: "#000000",
               width: "230px",
               padding: "8px",
-              borderRadius: "50px",
+              borderRadius: "10px",
             }}
             onClick={() => {
               setStatusModal(!statusModal);

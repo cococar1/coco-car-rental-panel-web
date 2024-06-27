@@ -1,4 +1,4 @@
-import React from "react";
-export function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
+export function capitalizeFirstLetter(string: string) {
+  if (!string) return string; // Maneja el caso de strings vacíos o null
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }

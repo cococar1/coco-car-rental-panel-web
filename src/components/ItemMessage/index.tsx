@@ -4,6 +4,7 @@ import { ContainerItemMessage } from "./itemMessage.style";
 import { Button as ButtonNextUI } from "@nextui-org/react";
 import { useContactContext } from "@/contexts/ContactContext";
 import { FormatDate } from "@/helpers/functions";
+import { capitalizeFirstLetter } from "@/utils";
 
 interface ItemMessageProps {
   contact: ContactType;
@@ -30,7 +31,9 @@ const ItemMessage: React.FC<ItemMessageProps> = ({
     <ContainerItemMessage>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ display: "flex", gap: "10px" }}>
-          <h2 style={{ fontWeight: "bold" }}>{contact?.subject}</h2>
+          <h2 style={{ fontWeight: "bold" }}>
+            {capitalizeFirstLetter(contact?.subject ?? "")}
+          </h2>
           <div>
             <span style={{ fontWeight: "bold" }}>Email: </span>
             <span>{contact?.email}</span>
@@ -49,10 +52,14 @@ const ItemMessage: React.FC<ItemMessageProps> = ({
       >
         {/* <p>{content.length > 90 ? content.slice(0, 90) : content}</p> */}
         <div style={{ width: "90%" }}>
-          <p>{contact?.content}</p>
+          <p> {capitalizeFirstLetter(contact?.content ?? "")}</p>
         </div>
         <div>
-          <ButtonNextUI  className="background-black" color="danger" onClick={handleDeleteContact}>
+          <ButtonNextUI
+            className="background-black"
+            color="danger"
+            onClick={handleDeleteContact}
+          >
             Delete
           </ButtonNextUI>
         </div>

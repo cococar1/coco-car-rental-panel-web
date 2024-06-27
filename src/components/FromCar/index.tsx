@@ -46,6 +46,7 @@ const FormCar: React.FC<FormCarProps> = ({
       onclickClose={(e) => {
         setStatus(!status);
       }}
+      styleContent={{paddingBottom:"20px"}}
     >
       <ContainerFromPrincipal>
         <div

@@ -15,6 +15,7 @@ import EmailIcon from "../assets/svgs/emailIcon";
 import TicketIcon from "../assets/svgs/ticketIcon";
 import CloseSessionIcon from "../assets/svgs/closeSessionIcon";
 import { useAuthContext } from "@/contexts/AuthContext";
+import QuestionIcon from "../assets/svgs/questionIcon";
 export const DashboardNavBar: any = ({
   user,
   role,
@@ -61,7 +62,7 @@ export const DashboardNavBar: any = ({
           <NavItem isactive={(mainRoute == "booking") as boolean}>
             <Link href="/booking">
               <DocumentIcon
-                color={mainRoute == "/booking" ? "#E96F45" : "#000000"}
+                color={mainRoute == "booking" ? "#E96F45" : "#000000"}
               />
               <p>Reservas</p>
             </Link>
@@ -88,7 +89,7 @@ export const DashboardNavBar: any = ({
           </NavItem>
           <NavItem isactive={(mainRoute == "faq") as boolean}>
             <Link href="/faq">
-              <EmailIcon color={mainRoute == "/faq" ? "#E96F45" : "#000000"} />
+              <QuestionIcon color={mainRoute == "faq" ? "#E96F45" : "#000000"} />
               <p>Preguntas</p>
             </Link>
           </NavItem>

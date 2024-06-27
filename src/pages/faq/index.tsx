@@ -47,7 +47,7 @@ const FaQPage: React.FC<FaQPageProps> = () => {
               background: "#000000",
               width: "230px",
               padding: "8px",
-              borderRadius: "50px",
+              borderRadius: "10px",
             }}
             onClick={() => {
               setStatusModal(!statusModal);
