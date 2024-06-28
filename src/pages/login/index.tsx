@@ -1,6 +1,9 @@
 "use client";
 import Image from "next/image";
-import { ContainerLoginModal, ContainerLoginPage } from "../../styles/login.style";
+import {
+  ContainerLoginModal,
+  ContainerLoginPage,
+} from "../../styles/login.style";
 import InputUI from "@/ui/InputUI";
 import { ButtonPrincipalUI } from "@/ui/ButtonPrincipalUi";
 import { useAuthContext } from "@/contexts/AuthContext";
@@ -45,9 +48,8 @@ const LoginPage: React.FC<LoginPageProps> = () => {
         <ContainerLoginModal>
           <h1>Bienvenido</h1>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-            incidunt expedita ut, non quam totam perspiciatis tempora repellat
-            aperiam quis possimus commodi
+            Portal donde mantienes el control de todos tus vehículos,
+            promociones y demás funcionalidades
           </p>
           <InputUI
             type="email"

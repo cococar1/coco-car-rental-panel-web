@@ -6,12 +6,13 @@ import { CreateUserInput, UserResponse, useAuth } from "@/hooks/useAuth";
 
 export interface Authentication {
   logout: () => void;
-  // changePassword: (
-  //   password: string,
-  //   newPassword: string,
-  //   onSuccess?: MutationCompleteType<ResponseUser>
-  // ) => void;
-  // changePasswordRes: MutationResult<Record<"changePassword", ResponseUser>>;
+  changePassword: (
+    oldPassword: string,
+    newPassword: string,
+    repeatPassword: string,
+    onSuccess?: (data: any) => void
+  ) => void;
+
   userLogin: (email: string, password: string, redirectTo?: string) => void;
   getAuthData: () => void;
   userRegister: (data: CreateUserInput, redirectTo?: string) => void;

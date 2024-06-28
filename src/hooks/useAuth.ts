@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { getCookie, removeCookie, setCookie } from "@/helpers/cookie";
 import { AUTH_LOGIN, LOGGED_USER } from "@/gql/auth/auth.query";
-import { CREATE_USER } from "../gql/auth/auth.mutation";
+import { CHANGE_PASSWORD, CREATE_USER } from "../gql/auth/auth.mutation";
 import { useLazyQuery, useMutation } from "@apollo/client";
 
 import { useEffect, useState } from "react";
@@ -21,7 +21,7 @@ export const useAuth = () => {
   const [token, setToken] = useState("");
   const [authLoginFn, authLoginRes] = useLazyQuery(AUTH_LOGIN);
   // const [changePasswordFn, changePasswordRes] =
-  //   useMutation<Record<"changePassword", ResponseUser>>(CHANGE_PASSWORD);
+  const [changePasswordFn, changePasswordRes] = useMutation(CHANGE_PASSWORD);
   const [createUserFn, createUserRes] = useMutation(CREATE_USER);
   const [getLoggedUserFn, getLoggedUserRes] = useLazyQuery(LOGGED_USER);
 
@@ -29,32 +29,45 @@ export const useAuth = () => {
     getLoggedUserFn({});
   };
 
-  // const changePassword = (
-  //   password: string,
-  //   newPassword: string,
-  //   onSuccess?: MutationCompleteType<ResponseUser>
-  // ) => {
-  //   changePasswordFn({
-  //     variables: {
-  //       password,
-  //       newPassword,
-  //     },
-  //     onCompleted(data) {
-  //       if (data) {
-  //         toast.success("Contraseña cambiada!");
-  //         onSuccess && onSuccess(data.changePassword);
-  //       }
-  //     },
-  //     onError(error) {
-  //       const isNotAuthorized =
-  //         error.message.includes("Unauthorized") &&
-  //         "Contraseña actual incorrecta";
-  //       toast.error(
-  //         isNotAuthorized || error.message || "Error al cambiar contraseña"
-  //       );
-  //     },
-  //   });
-  // };
+  const changePassword = async (
+    oldPassword: string,
+    newPassword: string,
+    repeatPassword: string,
+    onSuccess?: (data: any) => void
+  ) => {
+    if (newPassword !== repeatPassword) {
+      toast.error("Contaseña no coincide", {
+        position: "bottom-right",
+      });
+    }
+    await changePasswordFn({
+      variables: {
+        oldPassword,
+        newPassword,
+        repeatPassword,
+      },
+      onCompleted(data: any) {
+        console.log(data);
+        if (data) {
+          toast.success("Contraseña cambiada!", {
+            position: "bottom-right",
+          });
+          onSuccess && onSuccess(data?.changePassword);
+        }
+      },
+      onError(error) {
+        const isNotAuthorized =
+          error.message.includes("Unauthorized") &&
+          "Contraseña actual incorrecta";
+        toast.error(
+          isNotAuthorized || error.message || "Error al cambiar contraseña",
+          {
+            position: "bottom-right",
+          }
+        );
+      },
+    });
+  };
 
   const userLogin = async (
     email: string,
@@ -153,7 +166,7 @@ export const useAuth = () => {
   return {
     logout,
     token,
-    // changePassword,
+    changePassword,
     // changePasswordRes,
     loggedUser: getLoggedUserRes.data?.loggedUser,
     loadingUser: getLoggedUserRes.loading,

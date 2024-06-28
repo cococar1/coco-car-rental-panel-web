@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
 export const CREATE_USER = gql`
   mutation CREATE_USER($createUserInput: CreateUserInput!) {
@@ -55,31 +55,45 @@ export const CREATE_USER = gql`
       }
     }
   }
-`
+`;
+
+// export const CHANGE_PASSWORD = gql`
+//   mutation CHANGE_PASSWORD($password: String!, $newPassword: String!) {
+//     changePassword(password: $password, newPassword: $newPassword) {
+//       accessToken
+//       refreshToken
+//       user {
+//         _id
+//         firstName
+//         lastName
+//         username
+//         email
+//         dateBirth
+//         role
+//         genre
+//         simulationsPurchased {
+//           _id
+//           name
+//         }
+//         allSimulations {
+//           university
+//           area
+//         }
+//       }
+//     }
+//   }
+// `
 
 export const CHANGE_PASSWORD = gql`
-  mutation CHANGE_PASSWORD($password: String!, $newPassword: String!) {
-    changePassword(password: $password, newPassword: $newPassword) {
-      accessToken
-      refreshToken
-      user {
-        _id
-        firstName
-        lastName
-        username
-        email
-        dateBirth
-        role
-        genre
-        simulationsPurchased {
-          _id
-          name
-        }
-        allSimulations {
-          university
-          area
-        }
-      }
-    }
+  mutation CHANGE_PASSWORD(
+    $oldPassword: String!
+    $newPassword: String!
+    $repeatPassword: String!
+  ) {
+    changePassword(
+      oldPassword: $oldPassword
+      newPassword: $newPassword
+      repeatPassword: $repeatPassword
+    )
   }
-`
+`;
