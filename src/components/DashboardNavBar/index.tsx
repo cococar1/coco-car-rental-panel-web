@@ -97,7 +97,7 @@ export const DashboardNavBar: any = ({
           <NavItem isactive={(mainRoute == "config") as boolean}>
             <Link href="/config">
               <ConfigIcon
-                color={mainRoute == "/config" ? "#E96F45" : "#000000"}
+                color={mainRoute == "config" ? "#E96F45" : "#000000"}
               />
               <p>Configuración</p>
             </Link>
