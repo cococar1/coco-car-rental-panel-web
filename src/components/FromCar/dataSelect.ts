@@ -15,7 +15,7 @@ export const categoriesFilterData = [
 ];
 
 export const fuelTypeData = [
-  { key: "gasolina", value: "Gasolina" },
+  { key: "nafta", value: "Nafta" },
   { key: "diesel", value: "Diesel" },
   { key: "gas", value: "Gas" },
   { key: "electricidad", value: "Electricidad" },
@@ -41,6 +41,10 @@ export const brandFilterData = [
   { key: "tesla", value: "Tesla" },
   { key: "renault", value: "Renault" },
   { key: "peugeot", value: "Peugeot" },
+  { key: "fiat", value: "Fiat" },
+  { key: "citroen", value: "Citroen" },
+  { key: "volvo", value: "Volvo" },
+  { key: "dodge", value: "Dodge" },
   { key: "todos", value: "Todos" },
 ];
 

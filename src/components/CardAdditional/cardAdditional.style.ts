@@ -10,7 +10,7 @@ export const ContainerCardAdditional = styled.div`
   border: 1px solid #aeb7c1;
   padding-top: 30px;
   /* display: inline; */
-  height: 350px;
+  /* height: 550px; */
 `;
 
 export const ContainerTicket = styled.div`

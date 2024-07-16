@@ -68,7 +68,7 @@ const FaQPage: React.FC<FaQPageProps> = () => {
           >
             <Modal
               styleModal={{
-                height: "380px",
+                height: "450px",
                 display: "flex",
                 gap: "20px",
                 flexDirection: "column",
@@ -113,10 +113,11 @@ const FaQPage: React.FC<FaQPageProps> = () => {
                     border: "none",
                     resize: "none",
                     fontWeight: "normal",
+                    overflow: "auto",
                   }}
                   stylesContainer={{
                     marginTop: "20px",
-                    height: "90px",
+                    height: "138px",
                     border: "1px solid #EDEDE5",
                     borderRadius: "10px",
                   }}
@@ -129,7 +130,7 @@ const FaQPage: React.FC<FaQPageProps> = () => {
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "center",
+                  justifyContent: "right",
                   marginTop: "20px",
                 }}
               >
