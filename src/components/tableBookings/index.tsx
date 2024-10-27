@@ -340,9 +340,9 @@ export default function TableBookings({
         isHeaderSticky
         bottomContent={bottomContent}
         bottomContentPlacement="outside"
-        onRowAction={(e) => {
-          console.log("object");
-        }}
+        // onRowAction={(e) => {
+        //   console.log("object");
+        // }}
         onSelect={(e) => console.log(e)}
         // bottomContentPlacement="outside"
         classNames={{
@@ -379,7 +379,9 @@ export default function TableBookings({
                 return (
                   //   <div></div>
 
-                  <TableCell>{renderCell(item, columnKey)  as ReactNode}</TableCell>
+                  <TableCell>
+                    {renderCell(item, columnKey) as ReactNode}
+                  </TableCell>
                 );
               }}
             </TableRow>
