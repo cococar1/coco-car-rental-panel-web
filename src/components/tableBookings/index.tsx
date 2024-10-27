@@ -343,7 +343,7 @@ export default function TableBookings({
         // onRowAction={(e) => {
         //   console.log("object");
         // }}
-        onSelect={(e) => console.log(e)}
+        // onSelect={(e) => console.log(e)}
         // bottomContentPlacement="outside"
         classNames={{
           wrapper: "max-h-[73vh]",

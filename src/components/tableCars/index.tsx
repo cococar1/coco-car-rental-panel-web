@@ -205,9 +205,9 @@ export default function TableCars({
           <div className="relative flex justify-around  items-center gap-2">
             <div style={{ position: "relative" }}>
               <Switch
-              className={car.published ? "Switch--custom-colors-active " : ""}
+                className={car.published ? "Switch--custom-colors-active " : ""}
                 key={car._id}
-                style={{color:"yellow"}}
+                style={{ color: "yellow" }}
                 onChange={(e) => {
                   e.preventDefault();
 
@@ -324,8 +324,7 @@ export default function TableCars({
         isHeaderSticky
         bottomContent={bottomContent}
         bottomContentPlacement="outside"
-   
-        onSelect={(e) => console.log(e)}
+        // onSelect={(e) => console.log(e)}
         // bottomContentPlacement="outside"
         classNames={{
           wrapper: "max-h-[73vh]",
