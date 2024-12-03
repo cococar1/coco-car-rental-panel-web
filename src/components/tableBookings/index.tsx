@@ -238,6 +238,7 @@ export default function TableBookings({
                 </DropdownTrigger>
                 <DropdownMenu>
                   <DropdownItem
+                  key={"view-table-booking"}
                     onClick={(e) => {
                       console.log(booking);
                       console.log("object");
@@ -260,6 +261,7 @@ export default function TableBookings({
                   // onClick={(e) => {
                   //   deleteBooking(booking._id, () => {});
                   // }}
+                  key={"delete-table-booking"}
                   >
                     Delete
                   </DropdownItem>
