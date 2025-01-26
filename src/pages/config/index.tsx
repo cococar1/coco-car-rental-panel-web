@@ -158,7 +158,7 @@ const ConfigPage: React.FC<ConfigPageProps> = () => {
               />
             </ContainerItemGrid>
             <ContainerItemGrid>
-              <a href="">olvidaste tu contraseña</a>
+              {/* <a href="">olvidaste tu contraseña</a> */}
             </ContainerItemGrid>
             <ContainerItemGrid>
               <label htmlFor="old-password"> Nueva Contraseña</label>
@@ -184,7 +184,7 @@ const ConfigPage: React.FC<ConfigPageProps> = () => {
                       console.log(viewPassword);
                     }}
                   >
-                    {viewPassword ? <EyeOpenIcon /> : <EyeClosedIcon />}
+                    {newPassword ? <EyeOpenIcon /> : <EyeClosedIcon />}
                   </div>
                 }
               />
@@ -214,7 +214,7 @@ const ConfigPage: React.FC<ConfigPageProps> = () => {
                       console.log(viewPassword);
                     }}
                   >
-                    {viewPassword ? <EyeOpenIcon /> : <EyeClosedIcon />}
+                    {repeatPassword ? <EyeOpenIcon /> : <EyeClosedIcon />}
                   </div>
                 }
               />
@@ -239,7 +239,7 @@ const ConfigPage: React.FC<ConfigPageProps> = () => {
                 pointerEvents: errorRepeat ? "none" : "auto",
                 width: "200px ",
                 marginTop: "20px",
-                background:"#000"
+                background:"#E96F45 "
               }}
             >
               Guardar

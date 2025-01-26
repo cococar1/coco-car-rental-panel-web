@@ -127,14 +127,20 @@ const ModalViewBooking: React.FC<ModalViewBookingProps> = ({
         </div>
       </SectionAuto>
       <div
-        style={{ margin: "10px 0px", display: "flex", justifyContent: "flex-end",marginRight:"10%", }}
+        style={{
+          margin: "10px 0px",
+          display: "flex",
+          justifyContent: "center",
+          // marginRight: "10%",
+          // backgroundColor:"red"
+        }}
       >
         {data.paymentLink ? (
           <a
             style={{
               padding: "10px 10px",
               width: "200px",
-              background: "#000000",
+              background: "#E96F45 ",
               borderRadius: "10px",
               textAlign: "center",
               color: "#fff",
@@ -145,7 +151,7 @@ const ModalViewBooking: React.FC<ModalViewBookingProps> = ({
             Link pago
           </a>
         ) : (
-          <div>
+          <div style={{ background: "red" }}>
             <p style={{ color: "#E1E1E1" }}>No cuenta con link de pago</p>
           </div>
         )}

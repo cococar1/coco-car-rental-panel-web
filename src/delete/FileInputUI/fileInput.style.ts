@@ -25,9 +25,9 @@ export const InputFile = styled.input`
     width: 100%;
     justify-content: center;
     align-items: center;
-    background: #3498db;
+    background: #E96F45 ;
     color: #fff;
-    border: 1px solid #3498db;
+    border: 1px solidrgb(241, 73, 16) ;
     border-radius: 5px;
     padding: 6px 12px;
     outline: none;

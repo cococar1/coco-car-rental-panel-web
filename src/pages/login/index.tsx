@@ -47,7 +47,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
         </div>
         <ContainerLoginModal>
           <h1>Bienvenido</h1>
-          <p>
+          <p style={{marginTop:"10px"}}>
             Portal donde mantienes el control de todos tus vehículos,
             promociones y demás funcionalidades
           </p>
@@ -55,7 +55,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
             type="email"
             placeholder="Ingresa tu correo electrónico"
             backgroundcolor="#ffffff"
-            stylesContainer={{ width: "100%" }}
+            stylesContainer={{ width: "100%",marginTop:"20px" }}
             stylesInput={{ width: "100%" }}
             valueInput={loginData.email}
             changeValue={onChangeEmail}

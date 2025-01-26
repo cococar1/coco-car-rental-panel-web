@@ -68,7 +68,7 @@ const PromotionAdditionalPage: React.FC<PromotionAdditionalPageProps> = () => {
           <ButtonPrincipalUI
             startIcon={<PlusIcon width={30} />}
             sx={{
-              background: "#000000",
+              background: "#E96F45 ",
               width: "230px",
               padding: "8px",
               borderRadius: "10px",
@@ -195,9 +195,9 @@ const PromotionAdditionalPage: React.FC<PromotionAdditionalPageProps> = () => {
                     height: "40px",
                     width: "80px",
                     background: "#fff",
-                    color: "rgb(27, 27, 27)",
+                    color: "#E96F45 ",
                     borderRadius: "10px",
-                    border: "1px solid rgb(27, 27, 27) ",
+                    border: "1px solid #E96F45 ",
                   }}
                   onClick={() => {
                     setStatusModal(!statusModal);
@@ -209,7 +209,7 @@ const PromotionAdditionalPage: React.FC<PromotionAdditionalPageProps> = () => {
                   sx={{
                     height: "40px",
                     width: "80px",
-                    background: "rgb(27, 27, 27)",
+                    background: "#E96F45 ",
                     color: "#fff",
                     borderRadius: "10px",
                   }}

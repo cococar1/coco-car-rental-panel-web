@@ -44,7 +44,7 @@ const FaQPage: React.FC<FaQPageProps> = () => {
           <ButtonPrincipalUI
             startIcon={<PlusIcon width={30} />}
             sx={{
-              background: "#000000",
+              background: "#E96F45 ",
               width: "230px",
               padding: "8px",
               borderRadius: "10px",
