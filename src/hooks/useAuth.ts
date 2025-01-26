@@ -176,7 +176,7 @@ export const useAuth = () => {
     setAuth,
     refetchUser,
     loginOptions: {
-      data: authLoginRes.data?.authLogin as UserResponse,
+      data: authLoginRes.data?.authLoginAdmin as UserResponse,
       loading: authLoginRes.loading,
       error: authLoginRes.error,
     },

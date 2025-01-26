@@ -27,20 +27,20 @@ export const authOptions: NextAuthOptions = {
 
           console.log("data", data);
 
-          const { authLogin } = data || {};
-          const { user } = authLogin || {};
+          const { authLoginAdmin } = data || {};
+          const { user } = authLoginAdmin || {};
 
           if (user) {
-            setCookie("access_token", authLogin.accessToken);
-            setCookie("refresh_token", authLogin.refreshToken);
+            setCookie("access_token", authLoginAdmin.accessToken);
+            setCookie("refresh_token", authLoginAdmin.refreshToken);
             return {
               _id: user._id,
               fullName: user.fullName,
               username: user.username,
               email: user.email,
               photo: user.photo,
-              accessToken: authLogin.accessToken,
-              refreshToken: authLogin.refreshToken,
+              accessToken: authLoginAdmin.accessToken,
+              refreshToken: authLoginAdmin.refreshToken,
             };
           }
         } catch (err) {
