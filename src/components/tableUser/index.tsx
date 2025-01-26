@@ -27,7 +27,6 @@ import { columns, users } from "./data";
 
 import { VerticalDotsIcon } from "../assets/svgs/verticalDotsIcon";
 
-
 const statusColorMap: Record<string, ChipProps["color"]> = {
   active: "success",
   paused: "danger",
@@ -141,9 +140,7 @@ export default function TableUsers() {
       case "actions":
         return (
           <div className="relative flex justify-around  items-center gap-2">
-            <div style={{ position: "relative" }}>
-              {/* <ToggleSwitch /> */}
-            </div>
+            <div style={{ position: "relative" }}>{/* <ToggleSwitch /> */}</div>
 
             <Dropdown>
               <DropdownTrigger>
@@ -152,9 +149,9 @@ export default function TableUsers() {
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
-                <DropdownItem>View</DropdownItem>
-                <DropdownItem>Edit</DropdownItem>
-                <DropdownItem>Delete</DropdownItem>
+                <DropdownItem key={"drop-item-view"}>View</DropdownItem>
+                <DropdownItem key={"drop-item-edit"}>Edit</DropdownItem>
+                <DropdownItem key={"drop-item-delete"}>Delete</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
