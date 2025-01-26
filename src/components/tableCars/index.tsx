@@ -246,6 +246,7 @@ export default function TableCars({
               </DropdownTrigger>
               <DropdownMenu>
                 <DropdownItem
+                  key={"drop-item-edit"}
                   onClick={(e) => {
                     setCar(car as Car);
                     setStatus(true);
@@ -255,6 +256,7 @@ export default function TableCars({
                   Edit
                 </DropdownItem>
                 <DropdownItem
+                  key={"drop-item-delete"}
                   onClick={(e) => {
                     deleteCar(car._id, () => {});
                   }}
